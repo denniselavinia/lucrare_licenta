@@ -1,1 +1,0 @@
-# lucrare_licenta
