@@ -38,3 +38,11 @@
 .html{
    scroll-behavior: smooth;
 }
+.png-container {
+   overflow: hidden;
+}
+
+.png-container img {
+   filter: drop-shadow(0px 100px 0 #118800);
+   transform: translateY(-100px);
+}
