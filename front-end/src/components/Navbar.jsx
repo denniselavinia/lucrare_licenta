@@ -24,7 +24,7 @@ const Navbar = () => {
         logout()
     }
     return (
-        <header className='max-w-screen-2x1 mx-auto px-60 py-6 space-x-16 space-y-4' style={{ backgroundColor: "#FFFDD0" }}>
+        <header className='min-w-screen max-w-screen-2x1 mx-auto px-60 py-6 space-x-16 space-y-4' style={{ backgroundColor: "#FFFDD0" }}>
             <nav className='flex justify-between items-center'>
                 {/* left side */}
                 <div className='flex items-center md:gap-2 gap-4'>

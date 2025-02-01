@@ -1,0 +1,293 @@
+[
+    {
+      "_id": 1,
+      "title": "Cladire luminată",
+      "description": "Nuanțe de mov într-un peisaj nocturn",
+      "noPieces": "1000",
+      "categoryImage": "Cladiri",
+      "categoryManufacturer": "Trefl",
+      "coverImage": "puzzle-1-1000.jpg",
+      "price": 25
+    },
+    {
+      "_id": 2,
+      "title": "Stradă împodobită",
+      "description": "Pe alei împodobite, când orașul doarme",
+      "noPieces": "1500",
+      "categoryImage": "Natură",
+      "categoryManufacturer": "Clementoni",
+      "coverImage": "puzzle-1-1500.jpg",
+      "price": 35
+    },
+    {
+      "_id": 3,
+      "title": "New York",
+      "description": "Energie în miez de noapte. Orașul nu doarme",
+      "noPieces": "2000",
+      "categoryImage": "Orașe",
+      "categoryManufacturer": "Trefl",
+      "coverImage": "puzzle-1-2000.jpg",
+      "price": 50
+    },
+    {
+      "_id": 4,
+      "title": "Surori",
+      "description": "Momente frumoase în familie. Poze de colecție",
+      "noPieces": "3000",
+      "categoryImage": "Oameni",
+      "categoryManufacturer": "Clementoni",
+      "coverImage": "puzzle-1-3000.jpg",
+      "price": 70
+    },
+    {
+      "_id": 5,
+      "title": "Viața la țară",
+      "description": "Un loc liniștit în inima munților. Aer curat, verdeață, relaxare.",
+      "noPieces": "4000",
+      "categoryImage": "Natură",
+      "categoryManufacturer": "Clementoni",
+      "coverImage": "puzzle-1-4000.jpg",
+      "price": 90
+    },
+    {
+      "_id": 6,
+      "title": "Monument",
+      "description": "Istoria în mâinile noastre. Frumusețea arhitecturii străvechi.",
+      "noPieces": "1000",
+      "categoryImage": "Peisaje",
+      "categoryManufacturer": "Ravensburger",
+      "coverImage": "puzzle-2-1000.jpg",
+      "price": 26
+    },
+    {
+      "_id": 7,
+      "title": "Cladire și grădină cu flori",
+      "description": "Peisaj select în zonă liniștită. Constrastul dintre arhictectură și natură.",
+      "noPieces": "1500",
+      "categoryImage": "Peisaje",
+      "categoryManufacturer": "Trefl",
+      "coverImage": "puzzle-2-1500.jpg",
+      "price": 35
+    },
+    {
+      "_id": 8,
+      "title": "Un mic colț de rai",
+      "description": "Restaurant pe străduțe înguste. Peisaj de vis pe alei spaniole.",
+      "noPieces": "3000",
+      "categoryImage": "Peisaje",
+      "categoryManufacturer": "Ravensburger",
+      "coverImage": "puzzle-2-3000.jpg",
+      "price": 50
+    },
+    {
+      "_id": 9,
+      "title": "Mănăstire",
+      "description": "",
+      "noPieces": "1000",
+      "categoryImage": "Clădiri",
+      "categoryManufacturer": "Trefl",
+      "coverImage": "puzzle-3-1000.jpg",
+      "price": 23
+    },
+    {
+      "_id": 10,
+      "title": "La țară",
+      "description": "Viața de altădată, la țară.",
+      "noPieces": "3000",
+      "categoryImage": "Peisaje",
+      "categoryManufacturer": "Ravensburger",
+      "coverImage": "puzzle-3-3000.jpg",
+      "price": 55
+    },
+    {
+      "_id": 11,
+      "title": "Pe coastă",
+      "description": "Un orășel pe creasta munților.",
+      "noPieces": "1000",
+      "categoryImage": "Peisaje",
+      "categoryManufacturer": "Trefl",
+      "coverImage": "puzzle-4-1000.jpg",
+      "price": 30
+    },
+    {
+      "_id": 12,
+      "title": "Acasă în natură",
+      "description": "Casuță frumoasă în inima naturii.",
+      "noPieces": "1000",
+      "categoryImage": "Peisaje",
+      "categoryManufacturer": "Schmidt",
+      "coverImage": "puzzle-5-1000.jpg",
+      "price": 35
+    },
+    {
+      "_id": 13,
+      "title": "Barcelona",
+      "description": "Tradiții și obiective turistice în Spania",
+      "noPieces": "1000",
+      "categoryImage": "Peisaje",
+      "categoryManufacturer": "Castorland",
+      "coverImage": "puzzle-6-1000.jpg",
+      "price": 28
+    },
+    {
+      "_id": 14,
+      "title": "Natură și animăluțe",
+      "description": "Mici momente ale naturii și ale animăluțelor.",
+      "noPieces": "3000",
+      "categoryImage": "Natură",
+      "categoryManufacturer": "Castorland",
+      "coverImage": "puzzle-4-3000.jpg",
+      "price": 40
+    },
+    {
+      "_id": 15,
+      "title": "Castel în Germania",
+      "description": "Castel din Germania surprins de sus, printre copaci și munți.",
+      "noPieces": "3000",
+      "categoryImage": "Peisaje",
+      "categoryManufacturer": "Schmidt",
+      "coverImage": "puzzle-5-3000.jpg",
+      "price": 45
+    },
+    {
+      "_id": 16,
+      "title": "Cladiri colorate",
+      "description": "Străduță cu cladiri colorate, lipite.",
+      "noPieces": "3000",
+      "categoryImage": "Peisaje",
+      "categoryManufacturer": "Schmidt",
+      "coverImage": "puzzle-6-3000.jpg",
+      "price": 35
+    },
+    {
+      "_id": 17,
+      "title": "Jungla animalelor",
+      "description": "Întâlnirea animalelor salbatice langă râu. Un colț al naturii salbatice superb.",
+      "noPieces": "3000",
+      "categoryImage": "Animale",
+      "categoryManufacturer": "Ravensburger",
+      "coverImage": "puzzle-7-3000.jpg",
+      "price": 40
+    },
+    {
+      "_id": 18,
+      "title": "Pisicuțe",
+      "description": "Poza de familie...pentru pisici. Zambiți!",
+      "noPieces": "1000",
+      "categoryImage": "Animale",
+      "categoryManufacturer": "Trefl",
+      "coverImage": "puzzle-7-1000.jpg",
+      "price": 25
+    },
+    {
+      "_id": 19,
+      "title": "Castelul Peleș",
+      "description": "Castelul Peleș, la exterior. Arhitectura, istorie...",
+      "noPieces": "1000",
+      "categoryImage": "Peisaje",
+      "categoryManufacturer": "Trefl",
+      "coverImage": "puzzle-9-1000.jpg",
+      "price": 25
+    },
+    {
+      "_id": 20,
+      "title": "La galop",
+      "description": "Caluți galopând pe câmp.",
+      "noPieces": "1000",
+      "categoryImage": "Animale",
+      "categoryManufacturer": "Trefl",
+      "coverImage": "puzzle-8-1000.jpg",
+      "price": 20
+    },
+    {
+      "_id": 21,
+      "title": "La munte",
+      "description": "Un colț de natură montan. Munți, lac, brazi...o oază de liniște",
+      "noPieces": "3000",
+      "categoryImage": "Natură",
+      "categoryManufacturer": "Clementoni",
+      "coverImage": "puzzle-9-3000.jpg",
+      "price": 40
+    },
+    {
+      "_id": 22,
+      "title": "Barcelona",
+      "description": "Barcelona colorată, de la balcon.",
+      "noPieces": "1000",
+      "categoryImage": "Peisaje",
+      "categoryManufacturer": "Castorland",
+      "coverImage": "puzzle-10-1000.jpg",
+      "price": 25
+    },
+    {
+      "_id": 23,
+      "title": "Coloseum",
+      "description": "",
+      "noPieces": "1000",
+      "categoryImage": "Peisaje",
+      "categoryManufacturer": "Trefl",
+      "coverImage": "puzzle-11-1000.jpg",
+      "price": 25
+    },
+    {
+      "_id": 24,
+      "title": "Hartă",
+      "description": "'Hartă veche, complexă, cu momente istorice.",
+      "noPieces": "3000",
+      "categoryImage": "Istorie",
+      "categoryManufacturer": "Ravensburger",
+      "coverImage": "puzzle-10-3000.jpg",
+      "price": 40
+    },
+    {
+      "_id": 25,
+      "title": "Mașină",
+      "description": "",
+      "noPieces": "1000",
+      "categoryImage": "Peisaje",
+      "categoryManufacturer": "Trefl",
+      "coverImage": "puzzle-13-1000.jpg",
+      "price": 30
+    },
+    {
+      "_id": 26,
+      "title": "Pod luminat",
+      "description": "",
+      "noPieces": "1000",
+      "categoryImage": "Peisaje",
+      "categoryManufacturer": "Trefl",
+      "coverImage": "puzzle-15-1000.jpg",
+      "price": 25
+    },
+    {
+      "_id": 27,
+      "title": "Castel",
+      "description": "Castel din Germania în mijlocul naturii.",
+      "noPieces": "3000",
+      "categoryImage": "Peisaje",
+      "categoryManufacturer": "Ravensburger",
+      "coverImage": "puzzle-8-3000.jpg",
+      "price": 45
+    },
+    {
+      "_id": 28,
+      "title": "Turnul Eifel",
+      "description": "Paris",
+      "noPieces": "1000",
+      "categoryImage": "Peisaje",
+      "categoryManufacturer": "Castorland",
+      "coverImage": "puzzle-12-1000.jpg",
+      "price": 26
+    },
+    {
+      "_id": 29,
+      "title": "Căluți",
+      "description": "Puzzle fosforescent",
+      "noPieces": "1000",
+      "categoryImage": "Animale",
+      "categoryManufacturer": "Trefl",
+      "coverImage": "puzzle-14-1000.jpg",
+      "price": 25
+    }
+  ]
+  

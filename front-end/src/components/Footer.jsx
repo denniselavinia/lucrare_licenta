@@ -2,7 +2,7 @@ import React from 'react'
 import puzzlePieces from "../assets/puzzlePieces.png"
 import { AiOutlineCopyrightCircle } from "react-icons/ai";
 import { Link } from 'react-router-dom'
-import Contact from "../pages/home/Contact";
+import Contact from "../pages/footer/Contact";
 
 import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa"
 
@@ -14,7 +14,7 @@ const scrollToTop = () => {
 const currentYear = new Date().getFullYear();
 
     return (
-    <footer className=' max-w-screen-2x1 mx-auto px-60 py-6' style={{ backgroundColor: "#FFFDD0" }}>
+    <footer className='min-w-screen max-w-screen-2x1 mx-auto px-60 py-6' style={{ backgroundColor: "#FFFDD0" }}>
         {/* Top Section */}
         <div className='flex justify-between items-center'>
             {/* Left Side - Logo and Nav */}
