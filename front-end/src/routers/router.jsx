@@ -9,6 +9,8 @@ import Terms from "../pages/footer/Terms";
 import AboutUs from "../pages/footer/AboutUs";
 import CartPage from "../pages/puzzles/CartPage";
 import Favorites from "../pages/puzzles/Favorites";
+import Login from "../components/Login";
+import Register from "../components/Register";
 
 const router = createBrowserRouter([
     {
@@ -18,6 +20,14 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home/>,  
+            },
+            {
+                path: "/login",
+                element: <Login/>,  
+            },
+            {
+                path: "/register",
+                element: <Register/>,  
             },
             {
                 path: "/cos",

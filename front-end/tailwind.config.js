@@ -12,7 +12,7 @@ export default {
         'blackBG': '#F5F5F5',
       },
       fontFamily: {
-        'primary': ["Roboto","serif"],
+        'primary': ["Poppins","serif"],
         'secondary': [ "Abel", "serif"]
       }
     },

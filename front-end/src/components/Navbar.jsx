@@ -18,7 +18,7 @@ const navigation = [
 
 const Navbar = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-    const currentUser = true;
+    const currentUser = false;
 
     const handleLogOut = () => {
         logout()
@@ -26,12 +26,15 @@ const Navbar = () => {
     return (
         <header className='min-w-screen max-w-screen-2x1 mx-auto px-60 py-6 space-x-16 space-y-4' style={{ backgroundColor: "#FFFDD0" }}>
             <nav className='flex justify-between items-center'>
-                {/* left side */}
-                <div className='flex items-center md:gap-2 gap-4'>
-                    <Link to="/"><IoExtensionPuzzleSharp className='size-8' style={{ color: "#3B5998" }} />
-                    </Link>
-                
-                    {/* search input */}
+            {/* left side */}
+            <div className='relative flex items-center md:gap-1 gap-1'>
+                <Link to="/" className='flex items-center'>
+                    <IoExtensionPuzzleSharp className='size-9' style={{ color: "#FF4500", transform: "rotate(30deg)" }} />
+                    <span className="text-md font-bold text-blue-800 leading-tight ml-1" style={{ fontFamily: 'Comic Sans MS, cursive, sans-serif' }}>
+                        The <span className="text-pink-500">New</span><br /><span className="text-purple-500">Life</span> of <span className="text-green-500">Puzzles</span>
+                    </span>
+                </Link>
+                {/* search input */}
                     <div className='relative sm:w-72 w-40 space-x-2'>
                         <IoSearch className='absolute inline-block left-3 inset-y-2' style={{ color: "grey" }} />
                         <input type='text' placeholder='Caută un puzzle'

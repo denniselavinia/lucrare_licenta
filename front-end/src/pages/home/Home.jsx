@@ -1,10 +1,10 @@
 import React from 'react'
-import Recommended from './Recommended'
+import Models from './Models'
 
 const Home = () => {
   return (
     <>
-      <Recommended/>
+      <Models/>
     </>
   )
 }
