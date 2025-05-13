@@ -1,4 +1,4 @@
-import {createBrowserRouter} from "react-router-dom";
+import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/home/Home";
 import Command from "../pages/footer/Command";
@@ -11,55 +11,65 @@ import CartPage from "../pages/puzzles/CartPage";
 import Favorites from "../pages/puzzles/Favorites";
 import Login from "../components/Login";
 import Register from "../components/Register";
+import Checkout from "../pages/puzzles/Checkout";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <App/>,
+        element: <App />,
         children: [
             {
                 path: "/",
-                element: <Home/>,  
+                element: <Home />,
             },
             {
                 path: "/login",
-                element: <Login/>,  
+                element: <Login />,
             },
             {
                 path: "/register",
-                element: <Register/>,  
+                element: <Register />,
             },
             {
                 path: "/cos",
-                element: <CartPage/>,
+                element: <CartPage />,
             },
             {
                 path: "/favorite",
-                element: <Favorites/>,
+                element: <Favorites />,
             },
             {
                 path: "/cum-comand",
-                element: <Command/>,  
+                element: <Command />,
             },
             {
                 path: "/livrarea-produselor",
-                element: <Delivery/>,
+                element: <Delivery />,
             },
             {
                 path: "/politica-de-retur",
-                element: <ReturnPolicy/>,
+                element: <ReturnPolicy />,
             },
             {
                 path: "/plata",
-                element: <Payment/>,  
+                element: <Payment />,
             },
             {
                 path: "/termeni",
-                element: <Terms/>,
+                element: <Terms />,
             },
             {
                 path: "/despre-noi",
-                element: <AboutUs/>,
+                element: <AboutUs />,
+            },
+            {
+                path: "/finalizare-comanda",
+                element: <Checkout />,
+            }
+            ,
+            {
+                path: "/comenzi",
+                // element: <Checkout />,
             }
         ]
     },
