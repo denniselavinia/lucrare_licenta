@@ -9,23 +9,16 @@ const CartPage = () => {
   const dispatch = useDispatch()
 
   const totalPrice = cartItems
-    .reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0)
-    .toFixed(2);
-  const handleRemoveFromCart = (puzzle) => {
+    .reduce((acc, item) => acc + item.price , 0).toFixed(2);
+  
+   const handleRemoveFromCart = (puzzle) => {
     dispatch(removeFromCart(puzzle))
-  }
-
-  const handleIncreaseQuantity = (puzzle) => {
-    dispatch(increaseQuantity(puzzle._id))
-  }
-
-  const handleDecreaseQuantity = (puzzle) => {
-    dispatch(decreaseQuantity(puzzle._id))
   }
 
   const handleClearCart = () => {
     dispatch(clearCart())
   }
+
   return (
     <>
       <div className="flex mt-12 h-full flex-col overflow-hidden bg-white shadow-xl">
@@ -55,36 +48,29 @@ const CartPage = () => {
                       cartItems.map((puzzle) => (
                         <li key={puzzle?._id} className="flex py-6">
                           <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                            <img
-                              alt=""
-                              src={`${getImgUrl(puzzle?.coverImage)}`}
-                              className="h-full w-full object-cover object-center"
-                            />
+                            <Link to={`/puzzles/${puzzle?._id}`}>
+                              <img
+                                alt=""
+                                src={`${getImgUrl(puzzle?.coverImage)}`}
+                                className="h-full w-full object-cover object-center"
+                                />
+                            </Link>
                           </div>
 
                           <div className="ml-4 flex flex-1 flex-col">
                             <div>
                               <div className="flex flex-wrap justify-between text-base font-medium text-gray-900">
                                 <h3>
-                                  <Link to='/'>{puzzle?.title}</Link>
+                                  <Link to={`/puzzles/${puzzle?._id}`}>{puzzle?.title}</Link>
                                 </h3>
                                 <p className="sm:ml-4">{puzzle?.price} RON</p>
                               </div>
                               <p className="mt-1 text-sm text-gray-500 capitalize"><strong>Număr piese: </strong>{puzzle?.noPieces}</p>
                             </div>
+
+
                             <div className="flex flex-col items-end space-y-1">
-                              <div className="flex items-center space-x-2">
-                                <button
-                                  onClick={() => { puzzle.quantity === 1 ? handleRemoveFromCart(puzzle) : handleDecreaseQuantity(puzzle) }}
-                                  className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
-                                >−</button>
-                                <span className="mx-2">{puzzle.quantity}</span>
-                                <button
-                                  onClick={() => handleIncreaseQuantity(puzzle)}
-                                  className="px-2 py-1 bg-gray-200 rounded hover:bg-gray-300"
-                                >+</button>
-                              </div>
-                              <div className="flex items-center mr-3.5">
+                              <div className="flex items-center">
                                 <button
                                   onClick={() => handleRemoveFromCart(puzzle)}
                                   type="button"
@@ -94,7 +80,6 @@ const CartPage = () => {
                                 </button>
                               </div>
                             </div>
-
                           </div>
                         </li>
                       ))

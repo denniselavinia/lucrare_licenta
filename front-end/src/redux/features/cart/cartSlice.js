@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
+import Swal from 'sweetalert2';
 
 const initialState = {
     cartItems: [],
@@ -11,7 +12,11 @@ const cartSlice = createSlice({
         addToCart: (state, action) => {
             const existingItem = state.cartItems.find(item => item._id === action.payload._id);
             if (existingItem) {
-                existingItem.quantity += 1;
+                Swal.fire({
+                    title: "Puzzle-ul este deja în coș.\nNu se poate introduce mai mult de o bucată din fiecare tip de puzzle!",
+                    icon: "info",
+                    showOkButton: true,
+                });
             } else {
                 state.cartItems.push({ ...action.payload, quantity: 1 })
             }
@@ -27,20 +32,7 @@ const cartSlice = createSlice({
         clearCart: (state) => {
             state.cartItems = [];
         },
-        increaseQuantity: (state, action) => {
-            const item = state.cartItems.find(p => p._id === action.payload);
-            if (item) {
-                item.quantity += 1;
-            }
-        },
-        decreaseQuantity: (state, action) => {
-            const item = state.cartItems.find(p => p._id === action.payload);
-            if (item && item.quantity >= 1) {
-                item.quantity -= 1;
-            }
-        },
     }
-
 })
 
 export const { addToCart, removeFromCart, clearCart, increaseQuantity, decreaseQuantity } = cartSlice.actions;

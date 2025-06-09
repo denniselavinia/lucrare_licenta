@@ -6,6 +6,7 @@ import { LuUserRound } from "react-icons/lu";
 import { FaRegHeart } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
 import { useState, useMemo } from "react";
+import AISearch from '../AI/searchWithAI';
 
 import avatarIcon from "../assets/avatarIcon.png";
 import { useSelector } from 'react-redux';
@@ -41,10 +42,13 @@ const Navbar = () => {
                         </span>
                     </Link>
                     {/* search input */}
-                    <div className='relative sm:w-72 w-40 space-x-2'>
+                    {/* <div className='relative sm:w-72 w-40 space-x-2'>
                         <IoSearch className='absolute inline-block left-3 inset-y-2' style={{ color: "grey" }} />
                         <input type='text' placeholder='Caută un puzzle'
                             className='bg-[#FFFFFF] w-full py-1 md:px-6 px-6 rounded-md border border-gray-300' />
+                    </div> */}
+                    <div className='relative sm:w-72 w-40 space-x-2'>
+                        <AISearch />
                     </div>
                 </div>
 

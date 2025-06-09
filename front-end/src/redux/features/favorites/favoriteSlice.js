@@ -13,7 +13,7 @@ const favoriteSlice = createSlice({
             const existingItem = state.favoriteItems.find(item => item._id === action.payload._id);
             if (existingItem) {
                 Swal.fire({
-                    title: "This puzzle is already in your favorites!",
+                    title: "Puzzle-ul se află deja în lista de favorite!",
                     icon: "info",
                     showOkButton: true,
                 });

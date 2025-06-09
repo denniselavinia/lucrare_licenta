@@ -12,6 +12,7 @@ import Favorites from "../pages/puzzles/Favorites";
 import Login from "../components/Login";
 import Register from "../components/Register";
 import Checkout from "../pages/puzzles/Checkout";
+import SinglePuzzle from "../pages/puzzles/SinglePuzzle.jsx";
 
 const router = createBrowserRouter([
     {
@@ -70,6 +71,10 @@ const router = createBrowserRouter([
             {
                 path: "/comenzi",
                 // element: <Checkout />,
+            },
+            {
+                path: "/puzzles/:id",
+                element: <SinglePuzzle />,
             }
         ]
     },

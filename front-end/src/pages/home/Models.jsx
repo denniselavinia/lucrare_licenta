@@ -12,17 +12,21 @@ import 'swiper/css/navigation';
 import PuzzleCard from '../puzzles/PuzzleCard';
 import { GrPrevious } from "react-icons/gr";
 import { GrNext } from "react-icons/gr";
+import { useFetchPuzzlesQuery } from '../../redux/features/puzzles/puzzlesAPI';
 
 const Models = () => {
-    const [puzzles, setPuzzles] = useState([]);
+    // const [puzzles, setPuzzles] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
     const puzzlesPerPage = 9;
 
-    useEffect(() => {
-        fetch("puzzles.json")
-            .then(res => res.json())
-            .then(data => setPuzzles(data));
-    }, []);
+    const { data: puzzles = []} = useFetchPuzzlesQuery();
+console.log(puzzles);
+
+    // useEffect(() => {
+    //     fetch("puzzles.json")
+    //         .then(res => res.json())
+    //         .then(data => setPuzzles(data));
+    // }, []);
 
     const indexOfLastPuzzle = currentPage * puzzlesPerPage;
     const indexOfFirstPuzzle = indexOfLastPuzzle - puzzlesPerPage;
@@ -48,7 +52,7 @@ const Models = () => {
 
     return (
         <>
-            <div className='relative flex flex-wrap items-center justify-center gap-2'>
+            <div className='relative flex flex-col md:flex-row flex-wrap items-center justify-center gap-2'>
                 {currentPuzzles.length > 0 && currentPuzzles.map((puzzle, index) => (
                     <div key={index} className='w-1/4'>
                         <PuzzleCard puzzle={puzzle} />
