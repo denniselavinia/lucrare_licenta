@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext';
 // import emailjs from 'emailjs-com';
 
 const Checkout = () => {
@@ -13,6 +14,9 @@ const Checkout = () => {
     const totalPrice = cartItems
         .reduce((acc, item) => acc + (item.price * (item.quantity || 1)), 0)
         .toFixed(2);
+    
+    const { currentUser } = useAuth();
+    
     const {
         register,
         handleSubmit,
@@ -62,7 +66,7 @@ const Checkout = () => {
                 title: "Comandă plasată!",
                 text: "Comanda a fost plasată cu succes!",
                 icon: "success",
-                timer: 3000,
+                timer: 2000,
                 showConfirmButton: false,
             });
             // navigate("/comenzi")
@@ -98,7 +102,7 @@ const Checkout = () => {
                                         <div className="md:col-span-5">
                                             <label htmlFor="full_name">Nume</label>
                                             <input
-
+                                                defaultValue={currentUser?.name}
                                                 type="text" name="name" id="name" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
                                         </div>
 
@@ -108,7 +112,7 @@ const Checkout = () => {
                                                 type="email"
                                                 name="email"
                                                 id="email"
-                                                // defaultValue={currentUser?.email}
+                                                defaultValue={currentUser?.email}
                                                 className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
                                                 placeholder="email@domain.com"
                                                 {...register("email", {

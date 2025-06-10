@@ -13,6 +13,7 @@ import Login from "../components/Login";
 import Register from "../components/Register";
 import Checkout from "../pages/puzzles/Checkout";
 import SinglePuzzle from "../pages/puzzles/SinglePuzzle.jsx";
+import PrivateRoute from "./privateRoute.jsx";
 
 const router = createBrowserRouter([
     {
@@ -65,7 +66,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/finalizare-comanda",
-                element: <Checkout />,
+                element: <PrivateRoute><Checkout /></PrivateRoute>,
             }
             ,
             {

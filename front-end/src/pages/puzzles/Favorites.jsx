@@ -46,18 +46,20 @@ const Favorites = () => {
                       favoriteItems.map((puzzle) => (
                         <li key={puzzle?._id} className="flex py-6">
                           <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                            <img
-                              alt=""
-                              src={`${getImgUrl(puzzle?.coverImage)}`}
-                              className="h-full w-full object-cover object-center"
-                            />
+                            <Link to={`/puzzles/${puzzle?._id}`}>
+                              <img
+                                alt=""
+                                src={`${getImgUrl(puzzle?.coverImage)}`}
+                                className="h-full w-full object-cover object-center"
+                                />
+                            </Link>
                           </div>
 
                           <div className="ml-4 flex flex-1 flex-col">
                             <div>
                               <div className="flex flex-wrap justify-between text-base font-medium text-gray-900">
                                 <h3>
-                                  <Link to='/'>{puzzle?.title}</Link>
+                                  <Link to={`/puzzles/${puzzle?._id}`}>{puzzle?.title}</Link>
                                 </h3>
                                 <p className="sm:ml-4">{puzzle?.price} RON</p>
                               </div>
