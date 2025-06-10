@@ -15,7 +15,7 @@ const cartSlice = createSlice({
                 Swal.fire({
                     title: "Puzzle-ul este deja în coș.\nNu se poate introduce mai mult de o bucată din fiecare tip de puzzle!",
                     icon: "info",
-                    showOkButton: true,
+                    showConfirmButton: true,
                 });
             } else {
                 state.cartItems.push({ ...action.payload, quantity: 1 })

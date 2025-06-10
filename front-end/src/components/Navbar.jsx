@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { IoExtensionPuzzleSharp } from "react-icons/io5";
 import { IoSearch } from "react-icons/io5";
 import { LuUserRound } from "react-icons/lu";
@@ -10,6 +10,8 @@ import AISearch from '../AI/searchWithAI';
 
 import avatarIcon from "../assets/avatarIcon.png";
 import { useSelector } from 'react-redux';
+import { useAuth } from '../context/AuthContext';
+import Swal from 'sweetalert2';
 
 const navigation = [
     { name: "Personal details", href: "/personal-details" },
@@ -22,14 +24,26 @@ const Navbar = () => {
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const cartItems = useSelector((state) => state.cart.cartItems || []);
     const cartQuantity = cartItems.reduce((total, item) => total + (item.quantity || 0), 0);
-
     const favoriteItems = useSelector((state) => state.favorites.favoriteItems || []);
-
-    const currentUser = false;
+    const { currentUser, logout } = useAuth();
+    const navigate = useNavigate();
 
     const handleLogOut = () => {
-        logout()
+        logout();
+        Swal.fire({
+            title: "Te-ai delogat cu succes!",
+            icon: "info",
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+        });
+        navigate('/');
     }
+
+    useEffect(() => {
+        setIsDropdownOpen(false);
+    }, [currentUser]);
+
     return (
         <header className='min-w-screen max-w-screen-2x1 mx-auto px-60 py-6 space-x-16 space-y-4' style={{ backgroundColor: "#FFFDD0" }}>
             <nav className='flex justify-between items-center'>
@@ -47,9 +61,9 @@ const Navbar = () => {
                         <input type='text' placeholder='Caută un puzzle'
                             className='bg-[#FFFFFF] w-full py-1 md:px-6 px-6 rounded-md border border-gray-300' />
                     </div> */}
-                    <div className='relative sm:w-72 w-40 space-x-2'>
+                    {/* <div className='relative sm:w-72 w-40 space-x-2'>
                         <AISearch />
-                    </div>
+                    </div> */}
                 </div>
 
                 {/* right side */}
@@ -77,7 +91,7 @@ const Navbar = () => {
                                                 <li>
                                                     <button
                                                         onClick={handleLogOut}
-                                                        className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100">Logout</button>
+                                                        className="block w-full text-left px-4 py-2 text-sm hover:bg-gray-100">Log out</button>
                                                 </li>
                                             </ul>
                                         </div>
