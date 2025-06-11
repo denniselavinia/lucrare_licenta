@@ -7,9 +7,8 @@ import { clearFavorites, removeFromFavorites } from '../../redux/features/favori
 const Favorites = () => {
   const favoriteItems = useSelector(state => state.favorites.favoriteItems);
   const dispatch = useDispatch()
-
   const totalPrice = favoriteItems.reduce((acc, item) => acc + item.price, 0).toFixed(2);
-
+  
   const handleRemoveFromFavorites = (puzzle) => {
     dispatch(removeFromFavorites(puzzle))
   }

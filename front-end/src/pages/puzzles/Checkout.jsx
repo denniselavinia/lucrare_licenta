@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import { useForm } from "react-hook-form"
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
-// import emailjs from 'emailjs-com';
+import { useCreateOrderMutation } from '../../redux/features/orders/ordersAPI';
+import { clearCart } from '../../redux/features/cart/cartSlice';
 
 const Checkout = () => {
 
@@ -24,52 +25,40 @@ const Checkout = () => {
         formState: { errors, isValid },
     } = useForm({ mode: "onChange" });
 
+    const [createOrder, { isLoading, error}] = useCreateOrderMutation();
+
     const navigate = useNavigate();
     const [isChecked, setIsChecked] = useState(false)
+
+    const dispatch = useDispatch();
+
     const onSubmit = async (data) => {
 
-        // const { currentUser } = useAuth();
         const newOrder = {
             name: data.name,
-            // email: currentUser?.email,
+            email: currentUser?.email,
             address: {
                 city: data.city,
                 country: data.country,
-                state: data.state,
                 zipcode: data.zipcode
 
             },
             phone: data.phone,
-            email: data.email,
             productIds: cartItems.map(item => item?._id),
             totalPrice: totalPrice,
         }
 
         try {
-            // await createOrder(newOrder).unwrap();
-
-            // // Send email via EmailJS
-            // await emailjs.send(
-            //     'YOUR_SERVICE_ID',      // replace with your EmailJS service ID
-            //     'YOUR_TEMPLATE_ID',     // replace with your EmailJS template ID
-            //     {
-            //         user_name: data.name,
-            //         user_email: data.email,
-            //         user_phone: data.phone,
-            //         user_address: `${data.address}, ${data.city}, ${data.country}, ${data.zipcode}`,
-            //         order_total: totalPrice,
-            //         order_products: cartItems.map(item => item.title).join(', ')
-            //     },
-            //     'YOUR_PUBLIC_KEY'       // replace with your EmailJS public key
-            // );
+            await createOrder(newOrder).unwrap();
+            dispatch(clearCart());
             Swal.fire({
                 title: "Comandă plasată!",
                 text: "Comanda a fost plasată cu succes!",
                 icon: "success",
-                timer: 2000,
+                timer: 1500,
                 showConfirmButton: false,
             });
-            // navigate("/comenzi")
+            navigate("/comenzi")
         } catch (error) {
             console.error("Eroare la plasarea comenzii", error);
             Swal.fire({
@@ -80,6 +69,10 @@ const Checkout = () => {
             });
         }
     }
+    if(isLoading) {
+        return <div className="text-center">Se procesează comanda...</div>;
+    }
+
     return (
         <section>
             <div className="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
@@ -102,8 +95,9 @@ const Checkout = () => {
                                         <div className="md:col-span-5">
                                             <label htmlFor="full_name">Nume</label>
                                             <input
-                                                defaultValue={currentUser?.name}
-                                                type="text" name="name" id="name" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50" />
+                                                // defaultValue={currentUser?.name}
+                                                type="text" name="name" id="name" className="h-10 border mt-1 rounded px-4 w-full bg-gray-50"
+                                                {...register("name", { required: "Numele este obligatoriu" })}/>
                                         </div>
 
                                         <div className="md:col-span-5">

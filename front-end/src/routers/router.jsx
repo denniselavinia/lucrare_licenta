@@ -14,6 +14,7 @@ import Register from "../components/Register";
 import Checkout from "../pages/puzzles/Checkout";
 import SinglePuzzle from "../pages/puzzles/SinglePuzzle.jsx";
 import PrivateRoute from "./privateRoute.jsx";
+import Orders from "../pages/puzzles/Orders.jsx";
 
 const router = createBrowserRouter([
     {
@@ -34,11 +35,11 @@ const router = createBrowserRouter([
             },
             {
                 path: "/cos",
-                element: <CartPage />,
+                element: <PrivateRoute><CartPage /></PrivateRoute>,
             },
             {
                 path: "/favorite",
-                element: <Favorites />,
+                element: <PrivateRoute><Favorites /></PrivateRoute>,
             },
             {
                 path: "/cum-comand",
@@ -71,7 +72,7 @@ const router = createBrowserRouter([
             ,
             {
                 path: "/comenzi",
-                // element: <Checkout />,
+                element: <PrivateRoute><Orders /></PrivateRoute>,
             },
             {
                 path: "/puzzles/:id",

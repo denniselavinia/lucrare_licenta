@@ -14,10 +14,8 @@ import { useAuth } from '../context/AuthContext';
 import Swal from 'sweetalert2';
 
 const navigation = [
-    { name: "Personal details", href: "/personal-details" },
-    // {name: "Orders", href:"/orders"},
-    // {name: "Cart Page", href:"/cart"},
-    // {name: "Check Out", href:"/checkout"},
+    { name: "Detalii personale", href: "/personal-details" },
+    {name: "Comenzile mele", href:"/comenzi"},
 ]
 
 const Navbar = () => {
@@ -35,7 +33,6 @@ const Navbar = () => {
             icon: "info",
             showConfirmButton: false,
             timer: 2000,
-            timerProgressBar: true,
         });
         navigate('/');
     }

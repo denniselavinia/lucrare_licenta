@@ -13,9 +13,11 @@ app.use(cors({
 }));
 //routes
 const puzzleRoutes = require('./src/puzzles/puzzle.route');
-app.use('/api/puzzles', puzzleRoutes);
-
+const orderRoutes = require('./src/orders/order.route');
 const aiRoutes = require('./src/ai/ai.route');
+
+app.use('/api/puzzles', puzzleRoutes);
+app.use('/api/orders', orderRoutes);
 app.use('/api/ai', aiRoutes);
 
 async function main() {

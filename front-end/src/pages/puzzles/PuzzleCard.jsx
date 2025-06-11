@@ -1,22 +1,47 @@
 import React from 'react'
 import { FiShoppingCart } from 'react-icons/fi'
 import { getImgUrl } from '../../utils/getImgUrl'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaRegHeart } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../../redux/features/cart/cartSlice';
 import { addToFavorites } from '../../redux/features/favorites/favoriteSlice';
+import { useAuth } from '../../context/AuthContext';
+import Swal from 'sweetalert2';
 
 
 const PuzzleCard = ({ puzzle }) => {
     const dispatch = useDispatch();
+    const { currentUser } = useAuth();
+    const navigate = useNavigate();
+
     const handleAddToCart = (puzzle) => {
-        dispatch(addToCart(puzzle))
+        if (!currentUser) {
+            Swal.fire({
+                title: "Te rugăm să te autentifici pentru a adăuga produse în coș.",
+                icon: "info",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+            navigate('/login');
+        } else {
+            dispatch(addToCart(puzzle))
+        }
     };
 
     const handleAddToFavorites = (puzzle) => {
-        dispatch(addToFavorites(puzzle))
+        if (!currentUser) {
+            Swal.fire({
+                title: "Te rugăm să te autentifici pentru a adăuga produse în lista de favorite.",
+                icon: "info",
+                showConfirmButton: false,
+                timer: 1500,
+            });
+            navigate('/login');
+        } else {
+            dispatch(addToFavorites(puzzle))
+        }
     }
 
     return (

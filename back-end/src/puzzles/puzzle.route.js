@@ -2,21 +2,21 @@ const express = require('express');
 const { postAPuzzle, getAllPuzzles, getSinglePuzzle, updatePuzzle, deletePuzzle } = require('./puzzle.controller');
 const router = express.Router();
 
-// endpoints for puzzles
+// endpoints pentru puzzles-uri
 
-//create/post a puzzle
+//crează un puzzle nou
 router.post('/create-puzzle', postAPuzzle)
  
-//get all puzzles
+//ia toate puzzle-urile
 router.get("/", getAllPuzzles);
 
-//single book 
+//un singur puzzle
 router.get("/:id", getSinglePuzzle)
 
-//update a puzzle
+//editează un puzzle
 router.put("/edit/:id", updatePuzzle)
 
-//delete a puzzle
+//sterge un puzzle
 router.delete("/delete/:id", deletePuzzle);
 
 module.exports = router;

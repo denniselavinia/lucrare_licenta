@@ -20,7 +20,7 @@ const Models = () => {
     const puzzlesPerPage = 9;
 
     const { data: puzzles = []} = useFetchPuzzlesQuery();
-console.log(puzzles);
+    console.log(puzzles);
 
     // useEffect(() => {
     //     fetch("puzzles.json")
