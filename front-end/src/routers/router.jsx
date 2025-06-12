@@ -15,6 +15,9 @@ import Checkout from "../pages/puzzles/Checkout";
 import SinglePuzzle from "../pages/puzzles/SinglePuzzle.jsx";
 import PrivateRoute from "./privateRoute.jsx";
 import Orders from "../pages/puzzles/Orders.jsx";
+import AdminRoute from "./AdminRoute.jsx";
+import AdminLogin from "../components/AdminLogin.jsx";
+import DashboardLayout from "../pages/dashboard/DashboardLayout.jsx";
 
 const router = createBrowserRouter([
     {
@@ -80,6 +83,33 @@ const router = createBrowserRouter([
             }
         ]
     },
+    {
+        path: "/admin",
+        element: <AdminLogin />, 
+    },
+    {
+        path: "/dashboard",
+        element: <AdminRoute><DashboardLayout/></AdminRoute>, 
+        children: [
+            {
+                path: "",
+                element: <AdminRoute><div>Dashboard Home</div></AdminRoute>
+            },
+            {
+                path: "add-new-puzzle",
+                element: <AdminRoute><div>Add New Puzzle</div></AdminRoute> 
+            },
+            {
+                path: "edit-puzzle/:id",
+                element: <AdminRoute><div>Edit Puzzle</div></AdminRoute> 
+            },
+            {
+                path: "manage-puzzles",
+                element: <AdminRoute><div>Manage Puzzles</div></AdminRoute> 
+            }
+
+        ]
+    }
 ]);
 
 export default router;

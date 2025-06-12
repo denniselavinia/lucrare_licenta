@@ -14,11 +14,16 @@ app.use(cors({
 //routes
 const puzzleRoutes = require('./src/puzzles/puzzle.route');
 const orderRoutes = require('./src/orders/order.route');
+const userRoutes = require('./src/users/user.route');
+const adminRoutes = require('./src/stats/admin.stats');
 const aiRoutes = require('./src/ai/ai.route');
 
 app.use('/api/puzzles', puzzleRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/auth', userRoutes);
+app.use('/api/admin/stats', adminRoutes);
 app.use('/api/ai', aiRoutes);
+
 
 async function main() {
     await mongoose.connect(process.env.DB_URL);

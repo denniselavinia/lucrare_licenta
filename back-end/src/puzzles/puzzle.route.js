@@ -1,11 +1,12 @@
 const express = require('express');
 const { postAPuzzle, getAllPuzzles, getSinglePuzzle, updatePuzzle, deletePuzzle } = require('./puzzle.controller');
+const verifyAdminToken = require('../middleware/verifyAdminToken');
 const router = express.Router();
 
 // endpoints pentru puzzles-uri
 
 //crează un puzzle nou
-router.post('/create-puzzle', postAPuzzle)
+router.post('/create-puzzle', verifyAdminToken, postAPuzzle)
  
 //ia toate puzzle-urile
 router.get("/", getAllPuzzles);
@@ -14,9 +15,9 @@ router.get("/", getAllPuzzles);
 router.get("/:id", getSinglePuzzle)
 
 //editează un puzzle
-router.put("/edit/:id", updatePuzzle)
+router.put("/edit/:id", verifyAdminToken, updatePuzzle)
 
 //sterge un puzzle
-router.delete("/delete/:id", deletePuzzle);
+router.delete("/delete/:id", verifyAdminToken, deletePuzzle);
 
 module.exports = router;

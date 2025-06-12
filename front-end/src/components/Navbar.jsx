@@ -14,6 +14,7 @@ import { useAuth } from '../context/AuthContext';
 import Swal from 'sweetalert2';
 
 const navigation = [
+    { name: "Dashboard", href: "/dashboard" },
     { name: "Detalii personale", href: "/personal-details" },
     {name: "Comenzile mele", href:"/comenzi"},
 ]
