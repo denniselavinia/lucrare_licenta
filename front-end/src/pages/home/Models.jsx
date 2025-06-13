@@ -17,7 +17,7 @@ import { useFetchPuzzlesQuery } from '../../redux/features/puzzles/puzzlesAPI';
 const Models = () => {
     // const [puzzles, setPuzzles] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const puzzlesPerPage = 9;
+    const puzzlesPerPage = 8;
 
     const { data: puzzles = []} = useFetchPuzzlesQuery();
     console.log(puzzles);
@@ -52,32 +52,32 @@ const Models = () => {
 
     return (
         <>
-            <div className='relative flex flex-col md:flex-row flex-wrap items-center justify-center gap-2'>
+            <div className='relative flex flex-wrap justify-center gap-2 w-full max-w-full'>
                 {currentPuzzles.length > 0 && currentPuzzles.map((puzzle, index) => (
-                    <div key={index} className='w-1/4'>
+                    <div key={index} className='p-2 flex-grow min-w-[200px] max-w-[250px] flex justify-center'>
                         <PuzzleCard puzzle={puzzle} />
                     </div>
                 ))}
             </div>
-            {/* <div className='flex justify-center mt-4'>
-                <button onClick={prevPage} disabled={currentPage === 1} className='mr-2 relatives flex flex-row items-center bg-gray-200 rounded-md p-1'>
+            <div className='flex justify-center mt-20'>
+                <button onClick={prevPage} disabled={currentPage === 1} className='mr-2 ml-2 relatives flex flex-row items-center bg-gray-100 rounded-md p-1'>
                     <GrPrevious /> Înapoi
                 </button>
-                <button onClick={nextPage} disabled={indexOfLastPuzzle >= puzzles.length} className='mr-2 relatives flex flex-row items-center bg-gray-200 rounded-md p-1'>
-                    Înainte <GrNext />
-                </button>
-            </div> */}
-            <div className='flex justify-center mt-4'>
+                
                 {Array.from({ length: totalPages }, (_, index) => (
                     <button
                         key={index}
                         onClick={() => handlePageClick(index + 1)}
-                        className={`mx-1 ${currentPage === index + 1 ? 'font-bold' : ''}`}
+                        className={`mx-1 ${currentPage === index + 1 ? 'font-bold text-lg items-center' : 'text-sm'}`}
                     >
-                        {index + 1}
+                       {index + 1}
                     </button>
                 ))}
+                <button onClick={nextPage} disabled={indexOfLastPuzzle >= puzzles.length} className='mr-2 ml-2 relatives flex flex-row items-center bg-gray-100 rounded-md p-1'>
+                    Înainte <GrNext />
+                </button>
             </div>
+            
         </>
     );
 };

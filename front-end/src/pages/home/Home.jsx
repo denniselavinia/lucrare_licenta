@@ -3,9 +3,11 @@ import Models from './Models'
 
 const Home = () => {
   return (
-    <>
-      <Models/>
-    </>
+    <div className="flex flex-col justify-center items-center min-h-[70vh]">
+      <div className="w-full max-w-5xl">
+        <Models/>
+      </div>
+    </div>
   )
 }
 

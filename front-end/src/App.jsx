@@ -8,15 +8,15 @@ import { AuthProvider } from './context/AuthContext'
 function App() {
 
   return (
-    <>
-      <AuthProvider>
+    <div className="flex flex-col min-h-screen">
+      <AuthProvider >
         <Navbar />
-          <main className='min-h-screen min-w-screen max-w-screen-2x1 mx-auto px-60 py-6 font-primary space-x-16 space-y-4'>
+          <main className='flex-1 mx-auto px-2 py-6 font-primary'>
             <Outlet />
           </main>
         <Footer />
       </AuthProvider>
-    </>
+    </div>
     )
 }
 

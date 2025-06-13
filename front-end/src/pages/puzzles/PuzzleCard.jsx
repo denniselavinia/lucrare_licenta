@@ -45,12 +45,12 @@ const PuzzleCard = ({ puzzle }) => {
     }
 
     return (
-        <div className="card">
+        <div className="card h-64">
             <Link to={`/puzzles/${puzzle?._id}`}>
                 <img
                     src={`${getImgUrl(puzzle?.coverImage)}`}
                     alt=""
-                    className="card-image cursor-pointer hover:scale-105 transition-all duration-200"
+                    className="card-image cursor-pointer hover:scale-105 transition-all duration-200 h-32 object-cover"
                 />
             </Link>
             <Link to={`/puzzles/${puzzle?._id}`}>
