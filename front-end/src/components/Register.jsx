@@ -51,7 +51,7 @@ const Register = () => {
     }
         
     return (
-        <div className='flex justify-center items-center min-h-screen'>
+        <div className='relative flex flex-col min-h-[70vh] w-full max-w-8xl mx-auto justify-center items-center px-64'>
             <div className='w-full max-w-sm mx-auto bg-white rounded shadow-md px-8 pt-6 pb-8 mb-4'>
                 <Link to="/" className='relative flex justify-center items-center mb-4'>
                     <IoExtensionPuzzleSharp className='size-9' style={{ color: "#FF4500", transform: "rotate(30deg)" }} />

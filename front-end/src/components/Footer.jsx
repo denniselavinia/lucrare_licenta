@@ -37,7 +37,7 @@ const currentYear = new Date().getFullYear();
                 </div>
             </div>
             {/* Border */}
-        <div className="border-t border-gray-400 my-2 px-4"></div>
+            {/* <div className="border-t border-gray-400 my-2 px-4"></div> */}
 
             {/* Bottom Section */}
         <div className="relatives flex justify-center items-center " >

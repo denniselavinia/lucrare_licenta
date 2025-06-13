@@ -14,9 +14,9 @@ import { useAuth } from '../context/AuthContext';
 import Swal from 'sweetalert2';
 
 const navigation = [
-    { name: "Dashboard", href: "/dashboard" },
+    // { name: "Dashboard", href: "/dashboard" },
     { name: "Detalii personale", href: "/personal-details" },
-    {name: "Comenzile mele", href:"/comenzi"},
+    { name: "Comenzile mele", href:"/comenzi"},
 ]
 
 const Navbar = () => {
@@ -43,8 +43,8 @@ const Navbar = () => {
     }, [currentUser]);
 
     return (
-        <header className="w-full py-6" style={{ backgroundColor: "#FFFDD0" }}>
-            <nav className="container mx-auto flex justify-between items-center px-8">
+        <header className="w-full py-6 px-16" style={{ backgroundColor: "#FFFDD0" }}>
+            <nav className="w-full flex justify-between items-center px-4"> 
                 {/* left side */}
                 <div className="relative flex items-center md:gap-1 gap-1">
                     <Link to="/" className="flex items-center">
@@ -96,7 +96,7 @@ const Navbar = () => {
                         }
                     </div>
 
-                    <Link to='/favorite' className='relative'>
+                    <Link to='/favorite' className='relative '>
                         <FaRegHeart className='size-8' style={{ color: "#666362" }} />
                         {
                             favoriteItems.length > 0 ? (

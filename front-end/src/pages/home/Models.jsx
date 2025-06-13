@@ -17,7 +17,7 @@ import { useFetchPuzzlesQuery } from '../../redux/features/puzzles/puzzlesAPI';
 const Models = () => {
     // const [puzzles, setPuzzles] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const puzzlesPerPage = 8;
+    const puzzlesPerPage = 12;
 
     const { data: puzzles = []} = useFetchPuzzlesQuery();
     console.log(puzzles);
@@ -59,7 +59,8 @@ const Models = () => {
                     </div>
                 ))}
             </div>
-            <div className='flex justify-center mt-20'>
+            {/* Pagination controls moved below the puzzles */}
+            <div className='flex justify-center mt-20 '>
                 <button onClick={prevPage} disabled={currentPage === 1} className='mr-2 ml-2 relatives flex flex-row items-center bg-gray-100 rounded-md p-1'>
                     <GrPrevious /> Înapoi
                 </button>
@@ -77,7 +78,6 @@ const Models = () => {
                     Înainte <GrNext />
                 </button>
             </div>
-            
         </>
     );
 };

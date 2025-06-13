@@ -18,6 +18,7 @@ import Orders from "../pages/puzzles/Orders.jsx";
 import AdminRoute from "./AdminRoute.jsx";
 import AdminLogin from "../components/AdminLogin.jsx";
 import DashboardLayout from "../pages/dashboard/DashboardLayout.jsx";
+import Filter from "../pages/puzzles/Filter.jsx";
 
 const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />,
+            },
+            {
+                path: "/",
+                element: <Filter/>,
             },
             {
                 path: "/login",

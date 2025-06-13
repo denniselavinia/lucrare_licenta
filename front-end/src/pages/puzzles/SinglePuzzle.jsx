@@ -9,13 +9,13 @@ import { addToCart } from '../../redux/features/cart/cartSlice';
 import { addToFavorites } from '../../redux/features/favorites/favoriteSlice';
 
 const SinglePuzzle = () => {
-    const { id } = useParams();
-    const { data: puzzle, isLoading, isError } = useFetchPuzzleByIdQuery(id);
     const [zoomed, setZoomed] = useState(false);
+    const { id } = useParams();
+    const dispatch = useDispatch();
+    const { data: puzzle, isLoading, isError } = useFetchPuzzleByIdQuery(id);
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div>Error loading puzzle</div>;
 
-    const dispatch = useDispatch();
     const handleAddToCart = (puzzle) => {
         dispatch(addToCart(puzzle))
     };
@@ -50,9 +50,12 @@ const SinglePuzzle = () => {
                     </div>
                 )}
             </div>
-            <div className="max-w-3xl shadow-md p-10 flex flex-col items-center mx-auto my-10 w-1/2">
+            <div className="max-w-3xl shadow-md p-10 flex flex-col justify-center items-center my-10" style={{
+                    width: "600px",         
+                    overflowY: "auto"       
+                }}>
                 <div className="w-full flex flex-col items-center">
-                    <div className="w-full mb-3">
+                    <div className="w-full mb-3 flex-col items-center">
                         <p className="text-gray-700"><strong>Număr de piese:</strong> {puzzle.noPieces}</p>
                         <p className="text-gray-700"><strong>Categorie:</strong> {puzzle.categoryImage}</p>
                         <p className="text-gray-700"><strong>Descriere:</strong> {puzzle.description}</p>
