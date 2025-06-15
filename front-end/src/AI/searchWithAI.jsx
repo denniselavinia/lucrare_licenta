@@ -1,7 +1,10 @@
 import { useState, useRef } from "react";
 import { FaRobot } from "react-icons/fa";
 import { IoExtensionPuzzleSharp } from "react-icons/io5";
-import axios from "axios";
+import { useFetchPuzzlesQuery } from "../redux/features/puzzles/puzzlesAPI";
+import ollama from "ollama/browser";
+
+
 
 function AISearch() {
     const [query, setQuery] = useState("");
@@ -10,28 +13,52 @@ function AISearch() {
     const [loading, setLoading] = useState(false);
     const responseRef = useRef(null);
 
+    const { data: puzzles = []} = useFetchPuzzlesQuery();
+    const systemPrompt = `
+You are an assistant for a puzzle store. Here are the available puzzles:
+${puzzles.map(p => `Title: ${p.title}, Description: ${p.description}, Number of pieces: ${p.noPieces}, Image category: ${p.categoryImage}, 
+    Manufacturer/Brand: ${p.categoryManufacturer}, Price: ${p.price}`).join('\n')}
+List ONLY the titles of the most relevant puzzles, separated by new lines. If none match, say "Nu s-au gasit puzzle-uri după caracteristicile cerute.
+Also, if the query is not related to puzzles, respond with "Întrebarea nu este legată de puzzle-uri.
+If the user asks for a specific puzzle, provide the title of that puzzle.
+If the user ask for puzzles in general, find the right answer from the internet. Try to respond quicky, with lower waiting time."
+`;
+
+    const messages = [
+        {
+            role: "system",
+            content: systemPrompt
+        }
+    ]
+
     const handleSearch = async () => {
         setResult("");
         setLoading(true);
+        
         try {
-            const response = await axios.post("http://localhost:3000/api/ai/search", { query });
-            if (!response.body) throw new Error("No stream");
-            const reader = response.body.getReader();
-            let text = "";
-            while (true) {
-                const { done, value } = await reader.read();
-                if (done) break;
-                const chunk = new TextDecoder().decode(value);
-                text += chunk;
-                setResult(text);
-                if (responseRef.current) {
-                    responseRef.current.scrollTop = responseRef.current.scrollHeight;
-                }
+            const response = await ollama.chat({
+                model: "llama3",
+                messages: [...messages,
+                {
+                    role: "user",
+                    content: query
+                }],
+                stream: true,
+            });
+    
+            for await (const part of response) {
+                setLoading(false);
+                // console.log("Bot response: ", part.message.content);
+                setResult((prev) => prev + part.message.content);
             }
-        } catch (err) {
-            setResult("Eroare la căutarea AI: " + err.message);
+        } catch (error) {
+            if (error.name === "AbortError") {
+                // eslint-disable-next-line no-console
+                console.log("ChatBot request was aborted.");
+            }
+        } finally {
+            
         }
-        setLoading(false);
     };
 
     return (
