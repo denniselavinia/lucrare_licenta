@@ -1,9 +1,22 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { useEffect } from 'react';
 import Swal from 'sweetalert2';
 
-const initialState = {
-    favoriteItems: [],
+
+const favoritesFromStorage = localStorage.getItem('favorites');
+let parsedFavorites = [];
+try {
+  if (favoritesFromStorage && favoritesFromStorage !== "undefined") {
+    parsedFavorites = JSON.parse(favoritesFromStorage);
+    if (!Array.isArray(parsedFavorites)) parsedFavorites = [];
+  }
+} catch {
+  parsedFavorites = [];
 }
+
+const initialState = {
+    favoriteItems: parsedFavorites,
+};
 
 const favoriteSlice = createSlice({
     name: 'favorites',

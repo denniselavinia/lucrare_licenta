@@ -5,8 +5,23 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import { AuthProvider } from './context/AuthContext'
 import AISearch from './AI/searchWithAI'
+import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
 
 function App() {
+
+  const cartItems = useSelector(state => state.cart.cartItems);
+
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cartItems));
+  }, [cartItems]);
+
+  const favoriteItems = useSelector(state => state.favorites.favoriteItems);
+
+  useEffect(() => {
+    localStorage.setItem('favorites', JSON.stringify(favoriteItems));
+  }, [favoriteItems]);
+
 
   return (
     <div className="flex flex-col min-h-screen">

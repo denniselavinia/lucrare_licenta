@@ -12,6 +12,26 @@ const googleProvider = new GoogleAuthProvider();
 export const AuthProvider = ({ children }) => {
     const [currentUser, setCurrentUser] = useState(null);
     const [loading, setLoading] = useState(true);
+   
+    let favorites = [];
+    try {
+      if (favoritesFromStorage && favoritesFromStorage !== "undefined") {
+        favorites = JSON.parse(favoritesFromStorage);
+        if (!Array.isArray(favorites)) favorites = [];
+      }
+    } catch {
+      favorites = [];
+    }
+
+    let cart = [];
+    try {
+      if (cartFromStorage && cartFromStorage !== "undefined") {
+        cart = JSON.parse(cartFromStorage);
+        if (!Array.isArray(cart)) cart = [];
+      }
+    } catch {
+        cart = [];
+    }
 
     //înregistrare utilizator
     const registerUser = async (email, password) => {
@@ -50,6 +70,19 @@ export const AuthProvider = ({ children }) => {
         });
         return () => unsubscribe();
     }, [])
+
+    const [favoriteItems, setFavoriteItems] = useState(favorites);
+
+    useEffect(() => {
+        localStorage.setItem('favorites', JSON.stringify(favoriteItems));
+    }, [favoriteItems]);
+
+    const [cartITems, setCartItems] = useState(cart);
+
+    useEffect(() => {
+        localStorage.setItem('cart', JSON.stringify(cartITems));
+    }, [cartITems]);
+
 
     const value = {
         currentUser,

@@ -1,9 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit'
+import { useEffect } from 'react';
 import Swal from 'sweetalert2';
 
-const initialState = {
-    cartItems: [],
+const cartFromStorage = localStorage.getItem('cart');
+let parsedCart = [];
+try {
+  if (cartFromStorage && cartFromStorage !== "undefined") {
+    parsedCart = JSON.parse(cartFromStorage);
+    if (!Array.isArray(parsedCart)) parsedCart = [];
+  }
+} catch {
+  parsedCart = [];
 }
+
+const initialState = {
+  cartItems: parsedCart,
+};
 
 const cartSlice = createSlice({
     name: 'cart',
