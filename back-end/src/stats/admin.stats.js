@@ -5,53 +5,24 @@ const Puzzle = require('../puzzles/puzzle.model');
 const router = express.Router();
 
 
-// Function to calculate admin stats
+// Functiw de pentru a obține statistici pentru admin
 router.get("/", async (req, res) => {
     try {
-        // 1. Numărul total de comenzi
+        // Numărul total de comenzi
         const totalOrders = await Order.countDocuments();
 
-        // 2. Numărul total de vânzări (suma totală a tuturor comenzilor)
-        const totalSales = await Order.aggregate([
-            {
-                $group: {
-                    _id: null,
-                    totalSales: { $sum: "$totalPrice" },
-                }
-            }
-        ]);
+        // Numărul total de vânzări (suma totală a tuturor comenzilor)
+        const orders = await Order.find();
+        const totalSales = orders.reduce((sum, order) => sum + (order.totalPrice || 0), 0);
 
-        // // 4. Statistica privind tendințele in materie de puzzle-uri 
-        // const trendingBooksCount = await Puzzle.aggregate([
-        //     { $match: { trending: true } },  // Match only trending books
-        //     { $count: "trendingBooksCount" }  // Return the count of trending books
-        // ]);
-        
-        // If you want just the count as a number, you can extract it like this:
-        // const trendingBooks = trendingBooksCount.length > 0 ? trendingBooksCount[0].trendingBooksCount : 0;
+        // Număr total de puzzle-uri
+        const totalPuzzles = await Puzzle.countDocuments();
 
-        // 5. Total number of books
-        const totalBooks = await Book.countDocuments();
-
-        // 6. Monthly sales (group by month and sum total sales for each month)
-        const monthlySales = await Order.aggregate([
-            {
-                $group: {
-                    _id: { $dateToString: { format: "%Y-%m", date: "$createdAt" } },  // Group by year and month
-                    totalSales: { $sum: "$totalPrice" },  // Sum totalPrice for each month
-                    totalOrders: { $sum: 1 }  // Count total orders for each month
-                }
-            },
-            { $sort: { _id: 1 } }  
-        ]);
-
-        // Result summary
-        res.status(200).json({  totalOrders,
-            totalSales: totalSales[0]?.totalSales || 0,
-            // trendingBooks,
-            totalBooks,
-            monthlySales, });
-      
+        res.json({
+        totalSales,
+        totalOrders,
+        totalPuzzles
+        });
     } catch (error) {
         console.error("Error fetching admin stats:", error);
         res.status(500).json({ message: "Failed to fetch admin stats" });

@@ -19,6 +19,10 @@ import AdminRoute from "./AdminRoute.jsx";
 import AdminLogin from "../components/AdminLogin.jsx";
 import DashboardLayout from "../pages/dashboard/DashboardLayout.jsx";
 import Filter from "../pages/puzzles/Filter.jsx";
+import Dashboard from "../pages/dashboard/Dashboard.jsx";
+import ManagePuzzle from "../pages/dashboard/ManagePuzzle.jsx";
+import EditPuzzle from "../pages/dashboard/EditPuzzle.jsx";
+import AddPuzzle from "../pages/dashboard/addPuzzle/AddPuzzle.jsx";
 
 const router = createBrowserRouter([
     {
@@ -98,19 +102,19 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "",
-                element: <AdminRoute><div>Dashboard Home</div></AdminRoute>
+                element: <AdminRoute><Dashboard/></AdminRoute>
             },
             {
                 path: "add-new-puzzle",
-                element: <AdminRoute><div>Add New Puzzle</div></AdminRoute> 
+                element: <AdminRoute><AddPuzzle/></AdminRoute> 
             },
             {
                 path: "edit-puzzle/:id",
-                element: <AdminRoute><div>Edit Puzzle</div></AdminRoute> 
+                element: <AdminRoute><EditPuzzle/></AdminRoute> 
             },
             {
                 path: "manage-puzzles",
-                element: <AdminRoute><div>Manage Puzzles</div></AdminRoute> 
+                element: <AdminRoute><ManagePuzzle/></AdminRoute> 
             }
 
         ]

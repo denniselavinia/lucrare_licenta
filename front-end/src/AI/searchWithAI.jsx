@@ -79,7 +79,7 @@ If the user ask for puzzles in general, find the right answer from the internet.
                         </span>
                     </div>
                     <div className="text-sm text-gray-500 mb-2">
-                        Întreabă AI-ul despre aplicație sau puzzle-uri în general.
+                        Întreabă AI-ul despre modelele de puzzle din aplicație.
                     </div>
                     <div
                         ref={responseRef}
