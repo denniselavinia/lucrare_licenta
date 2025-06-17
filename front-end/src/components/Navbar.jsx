@@ -16,7 +16,8 @@ import Swal from 'sweetalert2';
 const navigation = [
     // { name: "Dashboard", href: "/dashboard" },
     { name: "Detalii personale", href: "/personal-details" },
-    { name: "Comenzile mele", href:"/comenzi"},
+    { name: "Comenzile mele", href: "/comenzi" },
+    { name: "Vânzările mele", href:"/vanzari" },
 ]
 
 const Navbar = () => {
@@ -47,7 +48,7 @@ const Navbar = () => {
             <nav className="w-full flex justify-between items-center px-4"> 
                 {/* left side */}
                 <div className="relative flex items-center md:gap-1 gap-1">
-                    <Link to="/" className="flex items-center">
+                    <Link to="/" className="flex items-center" title="Acasă">
                         <IoExtensionPuzzleSharp className="size-9" style={{ color: "#FF4500", transform: "rotate(30deg)" }} />
                         <span className="text-md font-bold text-blue-800 leading-tight ml-1" style={{ fontFamily: 'Comic Sans MS, cursive, sans-serif' }}>
                             The <span className="text-pink-500">New</span><br /><span className="text-purple-500">Life</span> of <span className="text-green-500">Puzzles</span>
@@ -61,7 +62,7 @@ const Navbar = () => {
                         {
                             currentUser ? (
                                 <>
-                                    <button onClick={() => setIsDropdownOpen(!isDropdownOpen)}>
+                                    <button onClick={() => setIsDropdownOpen(!isDropdownOpen)} title="Profilul meu">
                                         <img src={avatarIcon} alt="" className={`size-7 rounded-full ${currentUser ? 'ring-2 ring-blue-500' : ''}`} />
                                     </button>
                                     {/* show dropdowns */}
@@ -89,14 +90,16 @@ const Navbar = () => {
                                     }
                                 </>
                             ) : (
-                                <Link to='/login'>
+                                <Link to='/login' title="Autentificare">
                                     <LuUserRound className='size-8' style={{ color: "#666362" }} />
                                 </Link>
                             )
                         }
                     </div>
-
-                    <Link to='/favorite' className='relative '>
+                    <Link to='/vinde-puzzle' className='relative' title="Vinde un puzzle">
+                        <IoExtensionPuzzleSharp className='size-8' style={{ color: "purple", transform: "rotate(250deg)" }} />
+                    </Link>
+                    <Link to='/favorite' className='relative ' title="Favorite">
                         <FaRegHeart className='size-8' style={{ color: "#666362" }} />
                         {
                             favoriteItems.length > 0 ? (
@@ -104,7 +107,7 @@ const Navbar = () => {
                                 : <span className='absolute top-0 right-0 inline-flex items-center justify-center px-1 py-0.5 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full'>0</span>
                         }
                     </Link>
-                    <Link to='/cos' className='relative'>
+                    <Link to='/cos' className='relative' title="Coșul meu">
                         <LuShoppingCart className='size-8' style={{ color: "#666362" }} />
                         {
                             cartItems.length > 0 ? (
@@ -112,6 +115,7 @@ const Navbar = () => {
                             ) : <span className='absolute top-0 right-0 inline-flex items-center justify-center px-1 py-0.5 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full'>0</span>
                         }
                     </Link>
+                    
                 </div>
             </nav>
         </header>

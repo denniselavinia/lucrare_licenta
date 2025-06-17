@@ -14,11 +14,13 @@ app.use(cors({
 //routes
 const puzzleRoutes = require('./src/puzzles/puzzle.route');
 const orderRoutes = require('./src/orders/order.route');
+const sellRoutes = require('./src/sell/sell.route');
 const userRoutes = require('./src/users/user.route');
 const adminRoutes = require('./src/stats/admin.stats');
 
 app.use('/api/puzzles', puzzleRoutes);
 app.use('/api/orders', orderRoutes);
+app.use('/api/sells', sellRoutes);
 app.use('/api/auth', userRoutes);
 app.use('/api/admin/stats', adminRoutes);
 

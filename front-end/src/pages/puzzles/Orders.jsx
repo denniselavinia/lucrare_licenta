@@ -20,7 +20,7 @@ const Orders = () => {
                                 <p className="text-gray-600">Nume: {order.name}</p>
                                 <p className="text-gray-600">Email: {order.email}</p>
                                 <p className="text-gray-600">Număr telefon: {order.phone}</p>
-                                <p className="text-gray-600">Preț total: ${order.totalPrice}</p>
+                                <p className="text-gray-600">Preț total: {order.totalPrice} RON</p>
                                 <h3 className="font-semibold mt-2">Adresă:</h3>
                                 <p> {order.address.country}, {order.address.city}, {order.address.zipcode}</p>
                                 <h3 className="font-semibold mt-2">Produse:</h3>

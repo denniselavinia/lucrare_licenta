@@ -23,6 +23,8 @@ import Dashboard from "../pages/dashboard/Dashboard.jsx";
 import ManagePuzzle from "../pages/dashboard/ManagePuzzle.jsx";
 import EditPuzzle from "../pages/dashboard/EditPuzzle.jsx";
 import AddPuzzle from "../pages/dashboard/addPuzzle/AddPuzzle.jsx";
+import SellPuzzle from "../pages/puzzles/SellPuzzle.jsx";
+import Sells from "../pages/puzzles/Sells.jsx";
 
 const router = createBrowserRouter([
     {
@@ -85,6 +87,14 @@ const router = createBrowserRouter([
             {
                 path: "/comenzi",
                 element: <PrivateRoute><Orders /></PrivateRoute>,
+            },
+            {
+                path: "/vinde-puzzle",
+                element: <PrivateRoute><SellPuzzle/></PrivateRoute>,
+            },
+            {
+                path: "/vanzari",
+                element: <PrivateRoute><Sells /></PrivateRoute>,
             },
             {
                 path: "/puzzles/:id",
