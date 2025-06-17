@@ -21,9 +21,9 @@ const currentYear = new Date().getFullYear();
                 <div className="flex justify-between items-center gap-10">
                     <img src={puzzlePieces} alt="Logo" className="png-container mb-5 w-15" style={{height: "70px" }} />
                     <ul className="flex flex-row md:flex-col gap-1 mb-5">
-                        <li><a href="/cum-comand" className="hover:text-primary" style={{ fontSize: "12px"}}>Cum comand?</a></li>
+                        <li><a href="/cum-comand" className="hover:text-primary" style={{ fontSize: "12px" }}>Cum comand?</a></li>
+                        <li><a href="/cum-vand" className="hover:text-primary" style={{ fontSize: "12px"}}>Cum vând?</a></li>
                         <li><a href="/livrarea-produselor" className="hover:text-primary" style={{ fontSize: "12px"}}>Livrarea produselor</a></li>
-                        <li><a href="/politica-de-retur" className="hover:text-primary" style={{ fontSize: "12px"}}>Politica de retur</a></li>
                     </ul>
                     <ul className="flex flex-row md:flex-col gap-1 mb-5">
                         <li><a href="/plata" className="hover:text-primary" style={{ fontSize: "12px"}}>Modalități de plată</a></li>

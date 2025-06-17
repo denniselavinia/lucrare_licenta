@@ -68,10 +68,10 @@ const SinglePuzzle = () => {
                     </div>
                     <div className='card-info relative flex flex-row fustify-between items-center mb-2 gap-3 text-lg'>
                         <button onClick={() => handleAddToCart(puzzle)} className="flex items-center gap-2 bg-blue-700 text-white rounded-md p-2">
-                            <LuShoppingCart className="" />
+                            <LuShoppingCart className="" title="Adaugă în coș"/>
                         </button>
                         <button onClick={() => handleAddToFavorites(puzzle)} className="flex items-center gap-2 bg-red-700 text-white rounded-md p-2">
-                            <FaRegHeart className="" />
+                            <FaRegHeart className="" title="Adaugă la favorite"/>
                         </button>
                     </div>
                 </div>

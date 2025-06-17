@@ -67,10 +67,10 @@ const PuzzleCard = ({ puzzle }) => {
                         {puzzle?.price} RON
                     </p>
                     <button onClick={() => handleAddToCart(puzzle)} className="flex items-center gap-2 bg-blue-700 text-white rounded-md p-2">
-                        <LuShoppingCart className="" />
+                        <LuShoppingCart className="" title="Adaugă în coș"/>
                     </button>
                     <button onClick={() => handleAddToFavorites(puzzle)} className="flex items-center gap-2 bg-red-700 text-white rounded-md p-2">
-                        <FaRegHeart className="" />
+                        <FaRegHeart className="" title="Adaugă la favorite"/>
                     </button>
                 </div>
             </div>

@@ -3,7 +3,6 @@ import App from "../App";
 import Home from "../pages/home/Home";
 import Command from "../pages/footer/Command";
 import Delivery from "../pages/footer/Delivery";
-import ReturnPolicy from "../pages/footer/ReturnPolicy";
 import Payment from "../pages/footer/Payment";
 import Terms from "../pages/footer/Terms";
 import AboutUs from "../pages/footer/AboutUs";
@@ -25,6 +24,8 @@ import EditPuzzle from "../pages/dashboard/EditPuzzle.jsx";
 import AddPuzzle from "../pages/dashboard/addPuzzle/AddPuzzle.jsx";
 import SellPuzzle from "../pages/puzzles/SellPuzzle.jsx";
 import Sells from "../pages/puzzles/Sells.jsx";
+import Profil from "../components/Profil.jsx";
+import Sell from "../pages/footer/Sell.jsx";
 
 const router = createBrowserRouter([
     {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
                 element: <PrivateRoute><Favorites /></PrivateRoute>,
             },
             {
+                path: "/personal-details",
+                element: <PrivateRoute><Profil /></PrivateRoute>,
+            },
+            {
                 path: "/cum-comand",
                 element: <Command />,
             },
@@ -64,8 +69,8 @@ const router = createBrowserRouter([
                 element: <Delivery />,
             },
             {
-                path: "/politica-de-retur",
-                element: <ReturnPolicy />,
+                path: "/cum-vand",
+                element: <Sell />,
             },
             {
                 path: "/plata",
