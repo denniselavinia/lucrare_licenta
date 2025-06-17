@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import { useFetchPuzzleByIdQuery, useUpdatePuzzleMutation } from '../../redux/features/puzzles/puzzlesAPI';
@@ -13,9 +13,12 @@ const EditPuzzle = () => {
   const { id } = useParams();
   const { data: puzzleData, isLoading, isError, refetch } = useFetchPuzzleByIdQuery(id);
   const [updatePuzzle] = useUpdatePuzzleMutation();
+  const navigate = useNavigate();
   const { register, handleSubmit, setValue, reset } = useForm();
   useEffect(() => {
     if (puzzleData) {
+        setValue('name', puzzleData.name);
+        setValue('email', puzzleData.email);
         setValue('title', puzzleData.title);
         setValue('description', puzzleData?.description);
         setValue('noPieces', puzzleData.noPieces);
@@ -28,6 +31,8 @@ const EditPuzzle = () => {
 
   const onSubmit = async (data) => {
     const updatePuzzleData = {
+        name: data.name,
+        email: data.email,
         title: data.title,
         description: data.description,
         noPieces: data.noPieces,
@@ -51,6 +56,7 @@ const EditPuzzle = () => {
             timer: 1500,
       });
       await refetch()
+      navigate('/dashboard/manage-puzzles');
     } catch (error) {
         console.log("Actualizarea puzzle-ului a eșuat!");
         Swal.fire({
@@ -69,8 +75,24 @@ const EditPuzzle = () => {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputField
+          label="Nume persoana contact"
+          name="name"
+          type="textarea"
+          placeholder="Introdu numele persoanei de contact"
+          register={register}
+        />
+
+        <InputField
+          label="E-mail"
+          name="email"
+          placeholder="Introdu e-mail-ul persoanei de contact"
+          type="textarea"
+          register={register}
+        />
+        <InputField
           label="Titlu"
           name="title"
+          type="textarea"
           placeholder="Introdu titlul puzzle-ului"
           register={register}
         />

@@ -4,12 +4,14 @@ import SelectField from './SelectField'
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import { useAddPuzzleMutation } from '../../../redux/features/puzzles/puzzlesAPI';
+import { useNavigate } from 'react-router-dom';
 
 const AddPuzzle = () => {
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     const [imageFile, setimageFile] = useState(null);
     const [addPuzzle, {isLoading, isError}] = useAddPuzzleMutation()
     const [imageFileName, setimageFileName] = useState('')
+    const navigate = useNavigate();
     const onSubmit = async (data) => {
  
         const newPuzzleData = {
@@ -25,9 +27,10 @@ const AddPuzzle = () => {
               showCancelButton: false,
                 timer: 1500,
               });
-              reset();
-              setimageFileName('')
-              setimageFile(null);
+            reset();
+            setimageFileName('')
+            setimageFile(null);
+            navigate('/dashboard/manage-puzzles');
         } catch (error) {
             console.error(error);
             Swal.fire({
@@ -53,6 +56,20 @@ const AddPuzzle = () => {
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Adaugă puzzle nou</h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className=''>
+      <InputField
+          label="Nume persoana contact"
+          name="name"
+          placeholder="Introdu numele persoanei de contact"
+          register={register}
+        />
+
+        <InputField
+          label="E-mail"
+          name="email"
+          placeholder="Introdu e-mail-ul persoanei de contact"
+          type="textarea"
+          register={register}
+        />
       <InputField
           label="Titlu"
           name="title"

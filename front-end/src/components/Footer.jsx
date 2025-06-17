@@ -40,9 +40,9 @@ const currentYear = new Date().getFullYear();
             {/* <div className="border-t border-gray-400 my-2 px-4"></div> */}
 
             {/* Bottom Section */}
-        <div className="relatives flex justify-center items-center " >
-                <AiOutlineCopyrightCircle className='size-3' /><p style={{ fontSize: "12px", color: "#000" }}>Copyright {currentYear}</p>
-                <Link to='/' className='relative' onClick={scrollToTop}>
+        <div className="relatives flex justify-center items-center">
+                <AiOutlineCopyrightCircle className='size-3'/><p style={{ fontSize: "12px", color: "#000" }}>Copyright {currentYear}</p>
+                <Link to='/' className='relative' onClick={scrollToTop} >
                     <p style={{ fontSize: "12px", color: "blue" }}>&nbsp;The new life of puzzles</p>
                 </Link>
             </div>

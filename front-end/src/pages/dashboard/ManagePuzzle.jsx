@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDeletePuzzleMutation, useFetchPuzzlesQuery } from '../../redux/features/puzzles/puzzlesAPI';
+import Swal from 'sweetalert2';
 
 const ManagePuzzle = () => {
     const navigate = useNavigate();
@@ -32,8 +33,8 @@ const ManagePuzzle = () => {
     };
 
   return (
-    <section className="py-1 bg-blueGray-50">
-    <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 mx-auto mt-24">
+    <section className="flex py-1 bg-blueGray-50 overflow-x-auto overflow-y-auto w-full">
+    <div className="w-full  mb-12 xl:mb-0 px-2 mx-auto mt-24 block w-full overflow-x-auto overflow-y-auto">
         <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
             <div className="rounded-t mb-0 px-4 py-3 border-0">
                 <div className="flex flex-wrap items-center">
@@ -43,12 +44,18 @@ const ManagePuzzle = () => {
                 </div>
             </div>
 
-            <div className="block w-full overflow-x-auto">
+            <div className="block w-full overflow-x-auto overflow-y-auto">
                 <table className="items-center bg-transparent w-full border-collapse ">
                     <thead>
                         <tr>
                             <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                                 #
+                            </th>
+                            <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                            Persoana contact
+                            </th>
+                            <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
+                                E-mail
                             </th>
                             <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0 whitespace-nowrap font-semibold text-left">
                                 Titlul puzzle-ului
@@ -79,8 +86,14 @@ const ManagePuzzle = () => {
                             puzzles && puzzles.map((puzzle, index) => (
                                 <tr key={index}>
                                 <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 text-left text-blueGray-700 ">
-                                   {index + 1}
+                                {index + 1}
                                 </th>
+                                <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
+                                {puzzle.name}
+                                </td>
+                                <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
+                                  {puzzle.email}
+                                </td>
                                 <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
                                     {puzzle.title}
                                 </td>

@@ -62,7 +62,7 @@ If the user ask for puzzles in general, find the right answer from the internet.
     };
 
     return (
-        <div className="fixed bottom-4 right-4 z-50 px-12 py-8 flex flex-col-reverse items-end">
+        <div className="fixed bottom-4 right-4 z-50 px-12 py-8 flex flex-col-reverse items-end"  title="Asistent Puzzle">
             {open && (
                 <div
                     className="mt-2 bg-white border rounded-xl shadow-2xl p-4 flex flex-col"

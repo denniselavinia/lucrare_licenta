@@ -2,6 +2,14 @@ const mongoose = require('mongoose');
 
 
 const puzzleSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+    },
+    email: {
+        type: String,
+        required: true,
+    },
     title: {
         type: String,
         required: true,

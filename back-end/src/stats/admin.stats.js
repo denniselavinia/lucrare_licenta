@@ -2,11 +2,12 @@ const mongoose = require('mongoose');
 const express = require('express');
 const Order = require('../orders/order.model');
 const Puzzle = require('../puzzles/puzzle.model');
+const verifyAdminToken = require('../middleware/verifyAdminToken');
 const router = express.Router();
 
 
-// Functiw de pentru a obține statistici pentru admin
-router.get("/", async (req, res) => {
+// Functie de pentru a obține statistici pentru admin
+router.get("/", verifyAdminToken, async (req, res) => {
     try {
         // Numărul total de comenzi
         const totalOrders = await Order.countDocuments();
