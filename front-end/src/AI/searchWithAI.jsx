@@ -20,8 +20,7 @@ ${puzzles.map(p => `Title: ${p.title}, Description: ${p.description}, Number of 
     Manufacturer/Brand: ${p.categoryManufacturer}, Price: ${p.price}`).join('\n')}
 List ONLY the titles of the most relevant puzzles, separated by new lines. If none match, say "Nu s-au gasit puzzle-uri după caracteristicile cerute.
 Also, if the query is not related to puzzles, respond with "Întrebarea nu este legată de puzzle-uri.
-If the user asks for a specific puzzle, provide the title of that puzzle.
-If the user ask for puzzles in general, find the right answer from the internet. Try to respond quicky, with lower waiting time."
+If the user asks for a specific puzzle, provide the title of that puzzle. Try to respond quicky, with lower waiting time."
 `;
 
     const messages = [

@@ -17,14 +17,13 @@ import Orders from "../pages/puzzles/Orders.jsx";
 import AdminRoute from "./AdminRoute.jsx";
 import AdminLogin from "../components/AdminLogin.jsx";
 import DashboardLayout from "../pages/dashboard/DashboardLayout.jsx";
-import Filter from "../pages/puzzles/Filter.jsx";
 import Dashboard from "../pages/dashboard/Dashboard.jsx";
 import ManagePuzzle from "../pages/dashboard/ManagePuzzle.jsx";
 import EditPuzzle from "../pages/dashboard/EditPuzzle.jsx";
 import AddPuzzle from "../pages/dashboard/addPuzzle/AddPuzzle.jsx";
 import SellPuzzle from "../pages/puzzles/SellPuzzle.jsx";
 import Sells from "../pages/puzzles/Sells.jsx";
-import Profil from "../components/Profil.jsx";
+import Profile from "../components/Profile.jsx";
 import Sell from "../pages/footer/Sell.jsx";
 
 const router = createBrowserRouter([
@@ -35,10 +34,6 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <Home />,
-            },
-            {
-                path: "/",
-                element: <Filter/>,
             },
             {
                 path: "/login",
@@ -58,7 +53,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "/personal-details",
-                element: <PrivateRoute><Profil /></PrivateRoute>,
+                element: <PrivateRoute><Profile /></PrivateRoute>,
             },
             {
                 path: "/cum-comand",
