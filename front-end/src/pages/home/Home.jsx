@@ -4,6 +4,7 @@ import { useFetchPuzzlesQuery } from "../../redux/features/puzzles/puzzlesAPI";
 
 const Home = () => {
 	const { data: puzzles = [], isLoading, isError } = useFetchPuzzlesQuery();
+	const availablePuzzles = puzzles.filter((p) => p.status === "available");
 
 	if (isLoading) return <div>Loading...</div>;
 	if (isError) return <div>Eroare la încărcarea puzzle-urilor!</div>;
@@ -12,7 +13,7 @@ const Home = () => {
 		<div className="relative flex  min-h-[70vh] w-full max-w-8xl mx-auto px-64">
 			<div className="w-[220px]"></div>
 			<div className="flex-1 flex flex-col justify-center items-center">
-				<Models puzzles={puzzles} />
+				<Models puzzles={availablePuzzles} />
 			</div>
 			<div className="w-[220px]"></div>
 		</div>

@@ -71,10 +71,21 @@ const deletePuzzle = async (req, res) => {
 	}
 };
 
+const availablePuzzles = async (req, res) => {
+	try {
+		const puzzles = await Puzzle.find({ status: "available" });
+		res.status(200).send(puzzles);
+	} catch (error) {
+		console.error("Eroare la preluarea puzzle-urilor disponibile:", error);
+		res.status(500).send({ message: "Eroare de server" });
+	}
+};
+
 module.exports = {
 	postAPuzzle,
 	getAllPuzzles,
 	getSinglePuzzle,
 	updatePuzzle,
 	deletePuzzle,
+	availablePuzzles,
 };

@@ -13,15 +13,19 @@ const Models = () => {
 	const puzzlesPerPage = 12;
 
 	const { data: puzzles = [] } = useFetchPuzzlesQuery();
-	console.log(puzzles);
+	const availablePuzzles = puzzles.filter((p) => p.status === "available");
+	console.log(availablePuzzles);
 
 	const indexOfLastPuzzle = currentPage * puzzlesPerPage;
 	const indexOfFirstPuzzle = indexOfLastPuzzle - puzzlesPerPage;
-	const currentPuzzles = puzzles.slice(indexOfFirstPuzzle, indexOfLastPuzzle);
-	const totalPages = Math.ceil(puzzles.length / puzzlesPerPage);
+	const currentPuzzles = availablePuzzles.slice(
+		indexOfFirstPuzzle,
+		indexOfLastPuzzle
+	);
+	const totalPages = Math.ceil(availablePuzzles.length / puzzlesPerPage);
 
 	const nextPage = () => {
-		if (indexOfLastPuzzle < puzzles.length) {
+		if (indexOfLastPuzzle < availablePuzzles.length) {
 			setCurrentPage((prevPage) => prevPage + 1);
 		}
 	};

@@ -12,9 +12,10 @@ function AISearch() {
 	const responseRef = useRef(null);
 
 	const { data: puzzles = [] } = useFetchPuzzlesQuery();
+	const availablePuzzles = puzzles.filter((p) => p.status === "available");
 	const systemPrompt = `
 You are an assistant for a puzzle store. Here are the available puzzles:
-${puzzles
+${availablePuzzles
 	.map(
 		(
 			p
