@@ -135,6 +135,7 @@ const Profile = () => {
 						{editMode ? (
 							<input
 								type="text"
+								name="nume"
 								className="border rounded px-2 py-1 flex-1"
 								value={profile.name}
 								onChange={(e) => handleChange("name", e.target.value)}
@@ -152,6 +153,7 @@ const Profile = () => {
 						<label className="w-24 font-semibold">Email:</label>
 						<input
 							type="email"
+							name="email"
 							className="border rounded px-2 py-1 flex-1 bg-gray-100"
 							value={profile.email}
 							disabled
@@ -163,6 +165,7 @@ const Profile = () => {
 						{editMode ? (
 							<input
 								type="text"
+								name="adresa"
 								className="border rounded px-2 py-1 flex-1"
 								value={profile.address}
 								onChange={(e) => handleChange("address", e.target.value)}
@@ -181,6 +184,7 @@ const Profile = () => {
 						{editMode ? (
 							<input
 								type="tel"
+								name="telefon"
 								className="border rounded px-2 py-1 flex-1"
 								value={profile.phone}
 								onChange={(e) => handleChange("phone", e.target.value)}

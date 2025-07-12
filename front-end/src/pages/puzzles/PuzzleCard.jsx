@@ -43,7 +43,7 @@ const PuzzleCard = ({ puzzle }) => {
 	};
 
 	return (
-		<div className="card h-64">
+		<div className="card h-64 puzzle-card">
 			<Link to={`/puzzles/${puzzle?._id}`}>
 				<img
 					src={`${getImgUrl(puzzle?.coverImage)}`}

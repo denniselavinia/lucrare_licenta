@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -7,6 +8,7 @@ import { GrNext } from "react-icons/gr";
 import { useFetchPuzzlesQuery } from "../../redux/features/puzzles/puzzlesAPI";
 
 const Models = () => {
+	// const [puzzles, setPuzzles] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const puzzlesPerPage = 12;
 
