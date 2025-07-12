@@ -1,101 +1,103 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth } from "../firebase/firebase.config";
-import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
+import {
+	createUserWithEmailAndPassword,
+	GoogleAuthProvider,
+	onAuthStateChanged,
+	signInWithEmailAndPassword,
+	signInWithPopup,
+	signOut,
+} from "firebase/auth";
 
 const AuthContext = createContext();
-export const useAuth = () => { 
-    return  useContext(AuthContext);
-}
+export const useAuth = () => {
+	return useContext(AuthContext);
+};
 
 const googleProvider = new GoogleAuthProvider();
 
 export const AuthProvider = ({ children }) => {
-    const [currentUser, setCurrentUser] = useState(null);
-    const [loading, setLoading] = useState(true);
-   
-    let favorites = [];
-    try {
-      if (favoritesFromStorage && favoritesFromStorage !== "undefined") {
-        favorites = JSON.parse(favoritesFromStorage);
-        if (!Array.isArray(favorites)) favorites = [];
-      }
-    } catch {
-      favorites = [];
-    }
+	const [currentUser, setCurrentUser] = useState(null);
+	const [loading, setLoading] = useState(true);
 
-    let cart = [];
-    try {
-      if (cartFromStorage && cartFromStorage !== "undefined") {
-        cart = JSON.parse(cartFromStorage);
-        if (!Array.isArray(cart)) cart = [];
-      }
-    } catch {
-        cart = [];
-    }
+	let favorites = [];
+	try {
+		if (favoritesFromStorage && favoritesFromStorage !== "undefined") {
+			favorites = JSON.parse(favoritesFromStorage);
+			if (!Array.isArray(favorites)) favorites = [];
+		}
+	} catch {
+		favorites = [];
+	}
 
-    //înregistrare utilizator
-    const registerUser = async (email, password) => {
-        return await createUserWithEmailAndPassword(auth, email, password);
-    }
+	let cart = [];
+	try {
+		if (cartFromStorage && cartFromStorage !== "undefined") {
+			cart = JSON.parse(cartFromStorage);
+			if (!Array.isArray(cart)) cart = [];
+		}
+	} catch {
+		cart = [];
+	}
 
-    //login utilizator
-    const loginUser = async (email, password) => {
-        return await signInWithEmailAndPassword(auth, email, password);
-    }
+	//înregistrare utilizator
+	const registerUser = async (email, password) => {
+		return await createUserWithEmailAndPassword(auth, email, password);
+	};
 
-    //login cu Google
-    const signInWithGoogle = async () => {
-        return await signInWithPopup(auth, googleProvider);
-    }
+	//login utilizator
+	const loginUser = async (email, password) => {
+		return await signInWithEmailAndPassword(auth, email, password);
+	};
 
-    //logout utilizator
-    const logout = () => {
-        return signOut(auth)
-    }
+	//login cu Google
+	const signInWithGoogle = async () => {
+		return await signInWithPopup(auth, googleProvider);
+	};
 
-    //gestionează utilizatorul curent
-    useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (user) => {
-            setCurrentUser(user);
-            setLoading(false);
+	//logout utilizator
+	const logout = () => {
+		return signOut(auth);
+	};
 
-            if (user) {
-                const { email, displayName, photoURL } = user;
-                const userData = {
-                    email,
-                    username: displayName,
-                    photo: photoURL
-                };
-            }
-        });
-        return () => unsubscribe();
-    }, [])
+	//gestionează utilizatorul curent
+	useEffect(() => {
+		const unsubscribe = onAuthStateChanged(auth, (user) => {
+			setCurrentUser(user);
+			setLoading(false);
 
-    const [favoriteItems, setFavoriteItems] = useState(favorites);
+			if (user) {
+				const { email, displayName, photoURL } = user;
+				const userData = {
+					email,
+					username: displayName,
+					photo: photoURL,
+				};
+			}
+		});
+		return () => unsubscribe();
+	}, []);
 
-    useEffect(() => {
-        localStorage.setItem('favorites', JSON.stringify(favoriteItems));
-    }, [favoriteItems]);
+	const [favoriteItems, setFavoriteItems] = useState(favorites);
 
-    const [cartITems, setCartItems] = useState(cart);
+	useEffect(() => {
+		localStorage.setItem("favorites", JSON.stringify(favoriteItems));
+	}, [favoriteItems]);
 
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cartITems));
-    }, [cartITems]);
+	const [cartITems, setCartItems] = useState(cart);
 
+	useEffect(() => {
+		localStorage.setItem("cart", JSON.stringify(cartITems));
+	}, [cartITems]);
 
-    const value = {
-        currentUser,
-        loading,
-        registerUser,
-        loginUser,
-        signInWithGoogle,
-        logout
-    }
+	const value = {
+		currentUser,
+		loading,
+		registerUser,
+		loginUser,
+		signInWithGoogle,
+		logout,
+	};
 
-    return (
-        <AuthContext.Provider value={value}>
-            {children}
-        </AuthContext.Provider>
-    );
-}
+	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+};

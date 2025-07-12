@@ -1,5 +1,5 @@
-const express = require('express');
-const { createASell, getSellsByEmail } = require('./sell.controller');
+const express = require("express");
+const { createASell, getSellsByEmail } = require("./sell.controller");
 
 const router = express.Router();
 
@@ -7,6 +7,6 @@ const router = express.Router();
 router.post("/", createASell);
 
 // ia v\nz[rile] după email-ul utilizatorului
-router.get("/email/:email" , getSellsByEmail);
+router.get("/email/:email", getSellsByEmail);
 
 module.exports = router;

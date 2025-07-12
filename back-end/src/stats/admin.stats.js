@@ -1,33 +1,35 @@
-const mongoose = require('mongoose');
-const express = require('express');
-const Order = require('../orders/order.model');
-const Puzzle = require('../puzzles/puzzle.model');
-const verifyAdminToken = require('../middleware/verifyAdminToken');
+const mongoose = require("mongoose");
+const express = require("express");
+const Order = require("../orders/order.model");
+const Puzzle = require("../puzzles/puzzle.model");
+const verifyAdminToken = require("../middleware/verifyAdminToken");
 const router = express.Router();
-
 
 // Functie de pentru a obține statistici pentru admin
 router.get("/", verifyAdminToken, async (req, res) => {
-    try {
-        // Numărul total de comenzi
-        const totalOrders = await Order.countDocuments();
+	try {
+		// Numărul total de comenzi
+		const totalOrders = await Order.countDocuments();
 
-        // Numărul total de vânzări (suma totală a tuturor comenzilor)
-        const orders = await Order.find();
-        const totalSales = orders.reduce((sum, order) => sum + (order.totalPrice || 0), 0);
+		// Numărul total de vânzări (suma totală a tuturor comenzilor)
+		const orders = await Order.find();
+		const totalSales = orders.reduce(
+			(sum, order) => sum + (order.totalPrice || 0),
+			0
+		);
 
-        // Număr total de puzzle-uri
-        const totalPuzzles = await Puzzle.countDocuments();
+		// Număr total de puzzle-uri
+		const totalPuzzles = await Puzzle.countDocuments();
 
-        res.json({
-        totalSales,
-        totalOrders,
-        totalPuzzles
-        });
-    } catch (error) {
-        console.error("Error fetching admin stats:", error);
-        res.status(500).json({ message: "Failed to fetch admin stats" });
-    }
-})
+		res.json({
+			totalSales,
+			totalOrders,
+			totalPuzzles,
+		});
+	} catch (error) {
+		console.error("Error fetching admin stats:", error);
+		res.status(500).json({ message: "Failed to fetch admin stats" });
+	}
+});
 
 module.exports = router;

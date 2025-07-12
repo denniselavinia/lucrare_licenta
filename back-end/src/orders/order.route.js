@@ -1,5 +1,5 @@
-const express = require('express');
-const { createAOrder, getOrderByEmail } = require('./order.controller');
+const express = require("express");
+const { createAOrder, getOrderByEmail } = require("./order.controller");
 
 const router = express.Router();
 
@@ -7,6 +7,6 @@ const router = express.Router();
 router.post("/", createAOrder);
 
 // ia comenzile după email-ul utilizatorului
-router.get("/email/:email" , getOrderByEmail);
+router.get("/email/:email", getOrderByEmail);
 
 module.exports = router;
