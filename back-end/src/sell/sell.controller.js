@@ -7,7 +7,7 @@ const createASell = async (req, res) => {
 		res.status(200).json(savedSell);
 	} catch (error) {
 		console.error("Eroare la crearea vânzarii:", error);
-		res.status(500).json({ message: "Internal server error" });
+		res.status(500).json({ message: "Eroare de server" });
 	}
 };
 
@@ -23,7 +23,7 @@ const getSellsByEmail = async (req, res) => {
 		res.status(200).json(sells);
 	} catch (error) {
 		console.error("Eroare la obținerea vânzărilor:", error);
-		res.status(500).json({ message: "Internal server error" });
+		res.status(500).json({ message: "Eroare de server" });
 	}
 };
 

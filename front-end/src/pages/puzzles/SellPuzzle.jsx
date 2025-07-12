@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
@@ -75,7 +75,6 @@ const SellPuzzle = () => {
 									<div className="md:col-span-5">
 										<label htmlFor="full_name">Nume</label>
 										<input
-											// defaultValue={currentUser?.name}
 											type="text"
 											name="name"
 											id="name"

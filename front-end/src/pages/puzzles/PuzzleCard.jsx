@@ -1,5 +1,3 @@
-import React from "react";
-import { FiShoppingCart } from "react-icons/fi";
 import { getImgUrl } from "../../utils/getImgUrl";
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegHeart } from "react-icons/fa";

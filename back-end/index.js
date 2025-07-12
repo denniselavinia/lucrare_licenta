@@ -34,14 +34,14 @@ app.use("/api/admin/stats", adminRoutes);
 async function main() {
 	await mongoose.connect(process.env.DB_URL);
 	app.use("/", (req, res) => {
-		res.send("Welcome to my server!");
+		res.send("Hello!");
 	});
 }
 
 main()
-	.then(() => console.log("Mondodb connect successfully!"))
+	.then(() => console.log("Mondodb conectat cu succes!"))
 	.catch((err) => console.log(err));
 
 app.listen(port, () => {
-	console.log(`Example app listening on port ${port}`);
+	console.log(`Aplicația rulează pe portul ${port}`);
 });

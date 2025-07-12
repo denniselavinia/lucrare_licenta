@@ -1,20 +1,17 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { IoExtensionPuzzleSharp } from "react-icons/io5";
-import { IoSearch } from "react-icons/io5";
 import { LuUserRound } from "react-icons/lu";
 import { FaRegHeart } from "react-icons/fa";
 import { LuShoppingCart } from "react-icons/lu";
 import { useState, useMemo } from "react";
 import { useGetProfileByEmailQuery } from "../redux/features/profiles/profileAPI";
-
 import avatarIcon from "../assets/avatarIcon.png";
 import { useSelector } from "react-redux";
 import { useAuth } from "../context/AuthContext";
 import Swal from "sweetalert2";
 
 const navigation = [
-	// { name: "Dashboard", href: "/dashboard" },
 	{ name: "Detalii personale", href: "/personal-details" },
 	{ name: "Comenzile mele", href: "/comenzi" },
 	{ name: "Vânzările mele", href: "/vanzari" },
@@ -56,7 +53,6 @@ const Navbar = () => {
 			style={{ backgroundColor: "#FFFDD0" }}
 		>
 			<nav className="w-full flex justify-between items-center px-4">
-				{/* left side */}
 				<div className="relative flex items-center md:gap-1 gap-1">
 					<Link to="/" className="flex items-center" title="Acasă">
 						<IoExtensionPuzzleSharp
@@ -75,7 +71,6 @@ const Navbar = () => {
 					</Link>
 				</div>
 
-				{/* right side */}
 				<div className="relative flex items-center md:space-x-4 space-x-3">
 					<div>
 						{currentUser ? (
@@ -92,7 +87,6 @@ const Navbar = () => {
 										}`}
 									/>
 								</button>
-								{/* show dropdowns */}
 								{isDropdownOpen && (
 									<div className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-md z-40">
 										<ul className="py-2">

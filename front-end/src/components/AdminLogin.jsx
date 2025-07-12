@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
 import { IoExtensionPuzzleSharp } from "react-icons/io5";
 import axios from "axios";

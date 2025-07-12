@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { useEffect } from "react";
 import Swal from "sweetalert2";
 
 const favoritesFromStorage = localStorage.getItem("favorites");

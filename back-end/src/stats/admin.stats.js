@@ -27,8 +27,8 @@ router.get("/", verifyAdminToken, async (req, res) => {
 			totalPuzzles,
 		});
 	} catch (error) {
-		console.error("Error fetching admin stats:", error);
-		res.status(500).json({ message: "Failed to fetch admin stats" });
+		console.error("Eroare la preluarea dateleor despre admin:", error);
+		res.status(500).json({ message: "Eroare de server" });
 	}
 });
 

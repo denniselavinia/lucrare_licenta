@@ -1,10 +1,7 @@
-import React from "react";
 import puzzlePieces from "../assets/puzzlePieces.png";
 import { AiOutlineCopyrightCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Contact from "../pages/footer/Contact";
-
-import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 
 const Footer = () => {
 	const scrollToTop = () => {
@@ -15,9 +12,7 @@ const Footer = () => {
 
 	return (
 		<footer className="w-full py-6" style={{ backgroundColor: "#FFFDD0" }}>
-			{/* Top Section */}
 			<div className="flex justify-between items-center w-full max-w-screen-2xl mx-auto">
-				{/* Left Side - Logo and Nav */}
 				<div className="flex justify-between items-center gap-10">
 					<img
 						src={puzzlePieces}
@@ -84,15 +79,10 @@ const Footer = () => {
 						</li>
 					</ul>
 				</div>
-				{/* Right Side */}
 				<div className="flex justify-between items-center gap-10">
 					<Contact />
 				</div>
 			</div>
-			{/* Border */}
-			{/* <div className="border-t border-gray-400 my-2 px-4"></div> */}
-
-			{/* Bottom Section */}
 			<div className="relatives flex justify-center items-center">
 				<AiOutlineCopyrightCircle className="size-3" />
 				<p style={{ fontSize: "12px", color: "#000" }}>

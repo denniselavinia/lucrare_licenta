@@ -1,5 +1,3 @@
-import React from "react";
-
 const Contact = () => {
 	return (
 		<div className="relative flex justify-end items-center gap-10">

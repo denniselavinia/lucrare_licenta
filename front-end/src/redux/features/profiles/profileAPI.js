@@ -14,7 +14,6 @@ const profilesAPI = createApi({
 				url: "/",
 				method: "POST",
 				body: newProfile,
-				// credentials: 'include',
 			}),
 			invalidatesTags: ["Profile"],
 		}),
@@ -25,7 +24,6 @@ const profilesAPI = createApi({
 			providesTags: ["Profile"],
 		}),
 		updateProfile: builder.mutation({
-			// Accepts { email, ...updatedProfile }
 			query: ({ email, ...updatedProfile }) => ({
 				url: `/edit/${email}`,
 				method: "PUT",

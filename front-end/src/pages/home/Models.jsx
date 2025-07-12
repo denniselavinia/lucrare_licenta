@@ -1,11 +1,3 @@
-import React, { useEffect, useState } from "react";
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// import required modules
-import { Pagination, Navigation } from "swiper/modules";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
@@ -15,18 +7,11 @@ import { GrNext } from "react-icons/gr";
 import { useFetchPuzzlesQuery } from "../../redux/features/puzzles/puzzlesAPI";
 
 const Models = () => {
-	// const [puzzles, setPuzzles] = useState([]);
 	const [currentPage, setCurrentPage] = useState(1);
 	const puzzlesPerPage = 12;
 
 	const { data: puzzles = [] } = useFetchPuzzlesQuery();
 	console.log(puzzles);
-
-	// useEffect(() => {
-	//     fetch("puzzles.json")
-	//         .then(res => res.json())
-	//         .then(data => setPuzzles(data));
-	// }, []);
 
 	const indexOfLastPuzzle = currentPage * puzzlesPerPage;
 	const indexOfFirstPuzzle = indexOfLastPuzzle - puzzlesPerPage;
@@ -47,7 +32,7 @@ const Models = () => {
 
 	const handlePageClick = (pageNumber) => {
 		setCurrentPage(pageNumber);
-		window.scrollTo(0, 0); // Scroll to the top of the page
+		window.scrollTo(0, 0);
 	};
 
 	return (
@@ -63,7 +48,6 @@ const Models = () => {
 						</div>
 					))}
 			</div>
-			{/* Pagination controls moved below the puzzles */}
 			<div className="flex justify-center mt-20 ">
 				<button
 					onClick={prevPage}

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
+import Swal from "sweetalert2";
 import {
 	useGetProfileByEmailQuery,
 	useUpdateProfileMutation,
@@ -22,7 +23,6 @@ const Profile = () => {
 	const [createAProfile, { isLoading: isCreating }] =
 		useCreateProfileMutation();
 
-	// Local state for profile and edit mode
 	const [profile, setProfile] = useState({
 		image: defaultProfileImage,
 		name: "",
@@ -34,7 +34,6 @@ const Profile = () => {
 	const [isDirty, setIsDirty] = useState(false);
 	const [isProfileNew, setIsProfileNew] = useState(false);
 
-	// Load profile data from DB when available, or set up for creation if not exist
 	useEffect(() => {
 		if (profileData && Object.keys(profileData).length > 0) {
 			setProfile({
@@ -69,20 +68,28 @@ const Profile = () => {
 				await updateProfile({ email: profile.email, ...profile }).unwrap();
 			}
 			const refreshed = await refetch();
-			console.log("Refetched profile:", refreshed.data); // Check if data is correct
-			alert("Profilul a fost salvat!");
+			console.log("Refetched profile:", refreshed.data);
+			Swal.fire({
+				title: "Profilul a fost salvat!",
+				icon: "info",
+				showConfirmButton: false,
+				timer: 2000,
+			});
 		} catch {
-			alert("Eroare la salvarea profilului!");
+			Swal.fire({
+				title: "Eroare la salvarea profilului!",
+				icon: "error",
+				showConfirmButton: false,
+				timer: 2000,
+			});
 		}
 	};
 
-	// Handle input changes
 	const handleChange = (field, value) => {
 		setProfile((prev) => ({ ...prev, [field]: value }));
 		setIsDirty(true);
 	};
 
-	// Handle image upload
 	const handleImageChange = (e) => {
 		const file = e.target.files[0];
 		if (file) {
@@ -95,34 +102,11 @@ const Profile = () => {
 		}
 	};
 
-	// // Save changes to DB (create or update)
-	// const handleSave = async () => {
-	// 	try {
-	// 		if (isProfileNew) {
-	// 			await createAProfile(profile).unwrap();
-	// 			setIsProfileNew(false);
-	// 		} else {
-	// 			await updateProfile({ email: profile.email, ...profile }).unwrap();
-	// 		}
-	// 		setEditMode(false);
-	// 		setIsDirty(false);
-	// 		await refetch(); // Refetch to get the latest data from DB
-	// 		alert("Profilul a fost salvat!");
-	// 	} catch {
-	// 		alert("Eroare la salvarea profilului!");
-	// 	}
-	// };
-
 	if (isLoading) return <div>Se prelucrează datele...</div>;
 
-	// If error AND profileData is undefined, allow creation (show empty form)
 	if (isError && !profileData) {
-		// Do NOT return here, just continue to render the form for new profile
-		// Optionally, show a message:
-		// <div>Nu există profil. Completează formularul pentru a crea unul nou.</div>
 	}
 
-	// If error AND profileData exists, show error
 	if (isError && profileData) {
 		return <div>Eroare la obținerea datelor despre profil</div>;
 	}
@@ -146,7 +130,6 @@ const Profile = () => {
 					)}
 				</div>
 				<div className="mt-6 w-full">
-					{/* Name */}
 					<div className="flex items-center mb-4">
 						<label className="w-24 font-semibold">Nume:</label>
 						{editMode ? (
@@ -165,7 +148,6 @@ const Profile = () => {
 							</span>
 						)}
 					</div>
-					{/* Email */}
 					<div className="flex items-center mb-4">
 						<label className="w-24 font-semibold">Email:</label>
 						<input
@@ -176,7 +158,6 @@ const Profile = () => {
 							readOnly
 						/>
 					</div>
-					{/* Address */}
 					<div className="flex items-center mb-4">
 						<label className="w-24 font-semibold">Adresă:</label>
 						{editMode ? (
@@ -195,7 +176,6 @@ const Profile = () => {
 							</span>
 						)}
 					</div>
-					{/* Phone */}
 					<div className="flex items-center mb-4">
 						<label className="w-24 font-semibold">Telefon:</label>
 						{editMode ? (

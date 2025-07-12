@@ -53,12 +53,10 @@ If the user asks for a specific puzzle, provide the title of that puzzle. Try to
 
 			for await (const part of response) {
 				setLoading(false);
-				// console.log("Bot response: ", part.message.content);
 				setResult((prev) => prev + part.message.content);
 			}
 		} catch (error) {
 			if (error.name === "AbortError") {
-				// eslint-disable-next-line no-console
 				console.log("ChatBot request was aborted.");
 			}
 		} finally {

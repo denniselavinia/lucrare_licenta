@@ -7,7 +7,7 @@ const createAOrder = async (req, res) => {
 		res.status(200).json(savedOrder);
 	} catch (error) {
 		console.error("Eroare la crearea comenzii:", error);
-		res.status(500).json({ message: "Internal server error" });
+		res.status(500).json({ message: "Eroare server" });
 	}
 };
 
@@ -23,7 +23,7 @@ const getOrderByEmail = async (req, res) => {
 		res.status(200).json(orders);
 	} catch (error) {
 		console.error("Eroare la obținerea comenzilor:", error);
-		res.status(500).json({ message: "Internal server error" });
+		res.status(500).json({ message: "Eroare server" });
 	}
 };
 

@@ -13,7 +13,7 @@ router.post("/admin", async (req, res) => {
 			res.status(404).json({ error: "Utilizatorul admin nu a fost găsit" });
 		}
 		if (admin.password !== password) {
-			res.status(401).json({ error: "Parola incorecta" });
+			res.status(401).json({ error: "Parola incorectă" });
 		}
 		const token = jwt.sign(
 			{ id: admin._id, username: admin.username, role: admin.role },

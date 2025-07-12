@@ -4,10 +4,10 @@ const createAProfile = async (req, res) => {
 	try {
 		const newProfile = new Profile(req.body);
 		const savedProfile = await newProfile.save();
-		return res.status(200).json(savedProfile); // Only one response!
+		return res.status(200).json(savedProfile);
 	} catch (error) {
 		console.error("Eroare la crearea profilului:", error);
-		return res.status(500).json({ message: "Internal server error" });
+		return res.status(500).json({ message: "Eroare server" });
 	}
 };
 
@@ -20,7 +20,7 @@ const updateProfile = async (req, res) => {
 		if (!updatedProfile) {
 			return res.status(404).json({ message: "Profilul nu a fost găsit" });
 		}
-		return res.status(200).json(updatedProfile); // Return only the profile object!
+		return res.status(200).json(updatedProfile);
 	} catch (error) {
 		console.error("Eroare la actualizarea profilului:", error);
 		return res
@@ -32,7 +32,7 @@ const updateProfile = async (req, res) => {
 const getProfileByEmail = async (req, res) => {
 	try {
 		const { email } = req.params;
-		const profile = await Profile.findOne({ email }); // Return single profile
+		const profile = await Profile.findOne({ email });
 		if (!profile) {
 			return res
 				.status(404)
@@ -41,7 +41,7 @@ const getProfileByEmail = async (req, res) => {
 		return res.status(200).json(profile);
 	} catch (error) {
 		console.error("Eroare la obținerea profilului:", error);
-		return res.status(500).json({ message: "Internal server error" });
+		return res.status(500).json({ message: "Eroare server" });
 	}
 };
 
