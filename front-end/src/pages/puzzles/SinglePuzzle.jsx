@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useFetchPuzzleByIdQuery } from "../../redux/features/puzzles/puzzlesAPI";
 import { getImgUrl } from "../../utils/getImgUrl";
 import { LuShoppingCart } from "react-icons/lu";
@@ -7,21 +7,46 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 import { addToFavorites } from "../../redux/features/favorites/favoriteSlice";
+import { useAuth } from "../../context/AuthContext";
+import Swal from "sweetalert2";
 
 const SinglePuzzle = () => {
 	const [zoomed, setZoomed] = useState(false);
 	const { id } = useParams();
+	const { currentUser } = useAuth();
+	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const { data: puzzle, isLoading, isError } = useFetchPuzzleByIdQuery(id);
 	if (isLoading) return <div>Loading...</div>;
 	if (isError) return <div>Error loading puzzle</div>;
 
 	const handleAddToCart = (puzzle) => {
-		dispatch(addToCart(puzzle));
+		if (!currentUser) {
+			Swal.fire({
+				title: "Te rugăm să te autentifici pentru a adăuga produse în coș.",
+				icon: "info",
+				showConfirmButton: false,
+				timer: 1500,
+			});
+			navigate("/login");
+		} else {
+			dispatch(addToCart(puzzle));
+		}
 	};
 
 	const handleAddToFavorites = (puzzle) => {
-		dispatch(addToFavorites(puzzle));
+		if (!currentUser) {
+			Swal.fire({
+				title:
+					"Te rugăm să te autentifici pentru a adăuga produse în lista de favorite.",
+				icon: "info",
+				showConfirmButton: false,
+				timer: 1500,
+			});
+			navigate("/login");
+		} else {
+			dispatch(addToFavorites(puzzle));
+		}
 	};
 
 	return (
