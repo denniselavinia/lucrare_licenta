@@ -4,7 +4,7 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 	let driver = await new Builder().forBrowser("chrome").build();
 
 	try {
-		// Start with a clean session
+		// Pornește de la un o sesiune curată
 		await driver.get("http://localhost:5173");
 		await driver.manage().deleteAllCookies();
 		await driver.get("http://localhost:5173");
@@ -12,10 +12,10 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 		let title = await driver.getTitle();
 		console.log("Homepage title:", title);
 
-		// Wait for Navbar
+		// Așteaptă să apară bara de navigare
 		await driver.wait(until.elementLocated(By.css("nav")), 3000);
 
-		// Try different selectors for login link
+		// Se încercă diferite selecții pentru Login
 		let loginLink;
 		try {
 			loginLink = await driver.findElement(By.css('a[title="Autentificare"]'));
@@ -24,16 +24,17 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 		}
 		await loginLink.click();
 
-		// Click the "Register" link or button
+		// Se apasă pe butonul de înregistrare
 		await driver.wait(until.elementLocated(By.linkText("Register")), 5000);
 		await driver.findElement(By.linkText("Register")).click();
 
-		// Wait for registration form
+		// Se așteapă să apară formularul de înregistrare
 		await driver.wait(until.elementLocated(By.name("email")), 5000);
 		await driver.findElement(By.name("email")).sendKeys("test@email.com");
 		await driver.wait(until.elementLocated(By.name("password")), 5000);
 		await driver.findElement(By.name("password")).sendKeys("password");
-		// Submit registration form
+
+		// Se trimite formularul de înregistrare
 		await driver.wait(
 			until.elementLocated(By.xpath("//button[contains(text(),'Register')]")),
 			5000
@@ -44,7 +45,7 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 
 		let registrationSuccess = true;
 
-		// Check if registration failed due to duplicate email
+		// Se verifică dacă înregistrarea a eșuat, cu mesajul de e-mail duplicat
 		try {
 			await driver.wait(
 				until.elementLocated(
@@ -57,17 +58,18 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 			registrationSuccess = true;
 		}
 
-		// After registration fails
+		// Dacă înregistrarea a eșuat, se încearcă să se logheze cu aceleași date
 		if (!registrationSuccess) {
 			await driver.wait(until.elementLocated(By.linkText("Login")), 5000);
 			await driver.findElement(By.linkText("Login")).click();
 
-			// Wait for registration form
+			// Se așteaptă formularul de autentificare
 			await driver.wait(until.elementLocated(By.name("email")), 5000);
 			await driver.findElement(By.name("email")).sendKeys("test@email.com");
 			await driver.wait(until.elementLocated(By.name("password")), 5000);
 			await driver.findElement(By.name("password")).sendKeys("password");
-			// Submit registration form
+
+			//Se trimite formularul de autentificare
 			await driver.wait(
 				until.elementLocated(By.xpath("//button[contains(text(),'Login')]")),
 				5000
@@ -78,36 +80,36 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 		}
 
 		try {
-			// Wait for alert to be present (timeout 2 seconds)
+			// Se așteaptă să apară o alertă. Aceasta apare câteodată și se referă la faptul ca parola nu este suficient de puternică
 			await driver.wait(until.alertIsPresent(), 2000);
-			// Switch to alert and accept it
+			// Se focusează alerta și se acceptă
 			const alert = await driver.switchTo().alert();
-			// Accept the alert (equivalent to pressing OK)
 			await alert.accept();
 			console.log("Alert accepted!");
 		} catch (e) {
-			// No alert appeared, continue as normal
+			// Dacă alerta nu apare, se continuă
 			console.log("No alert present.");
 		}
 
 		await driver.wait(until.elementLocated(By.css("img.rounded-full")), 10000);
-		// Navigation works
+		// Se verifică dacă bara de navigație funcționează corect
 		await driver.findElement(By.css('a[title="Acasă"]')).click();
 		await driver.findElement(By.css('a[title="Favorite"]')).click();
 		await driver.findElement(By.css('a[title="Coșul meu"]')).click();
 
-		// Profile create/edit
+		// Se apasă pe butonul de profil
 		await driver.findElement(By.css('button[title="Profilul meu"]')).click();
 
-		// Wait for the dropdown to appear
+		// Se așteaptă ca meniul să apară
 		await driver.wait(
 			until.elementLocated(By.linkText("Detalii personale")),
 			5000
 		);
 
-		// Click the Detalii personale link
+		// Se apasă pe linkul "Detalii personale"
 		await driver.findElement(By.linkText("Detalii personale")).click();
 
+		// Se completează formularul cu detaliile personale
 		let saveProfile = true;
 		try {
 			let nameInput = await driver.findElement(By.name("nume"));
@@ -124,14 +126,14 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 			await driver
 				.findElement(By.xpath("//button[contains(text(),'Salvează profilul')]"))
 				.click();
-			// Wait for success swal message "Profilul a fost salvat!"
+			// Se așteaptă să apară un pop-up cu mesajul "Profilul a fost salvat!"
 			await driver.wait(
 				until.elementLocated(
 					By.xpath("//*[contains(text(),'Profilul a fost salvat!')]")
 				),
 				10000
 			);
-			// Optionally, also check if "Test User" appears
+			// Se verifică dacă "Test User" apare în profil
 			await driver.wait(
 				until.elementLocated(By.xpath("//*[contains(text(),'Test User')]")),
 				10000
@@ -139,6 +141,8 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 		} catch (error) {
 			saveProfile = false;
 		}
+
+		// Dacă profilul este deja înregistrat, acesta se editează și se completează formularul de editare.
 		if (!saveProfile) {
 			await driver
 				.findElement(By.xpath("//button[contains(text(),'Editează profilul')]"))
@@ -170,25 +174,22 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 				10000
 			);
 		}
-		await driver.wait(
-			async () => {
-				const modals = await driver.findElements(By.css(".swal2-container"));
-				return modals.length === 0;
-			},
-			10000 // up to 10 seconds
-		);
-		// Pagination
+		// Se verifică dacă profilul a fost salvat cu succes
+		await driver.wait(async () => {
+			const modals = await driver.findElements(By.css(".swal2-container"));
+			return modals.length === 0;
+		}, 10000);
+		// Se verifică paginația
 		await driver.findElement(By.css('a[title="Acasă"]')).click();
 		await driver
 			.findElement(By.xpath("//button[contains(text(),'Înainte')]"))
 			.click();
 
-		// Add to cart/favorites
-		// Select the first puzzle card before adding to cart/favorites
-		// Find all puzzle cards
+		// Se verifică adăugarea unui produs în coșul de cumpărături și în favorite
 		await driver.wait(until.elementLocated(By.css(".puzzle-card")), 10000);
 		const puzzleCards = await driver.findElements(By.css(".puzzle-card"));
 
+		// Se caută și se selectează cardul cu puzzle-ul numit "Barcelona"
 		let barcelonaCard;
 		for (const card of puzzleCards) {
 			const titleElem = await card.findElement(By.css(".card-title"));
@@ -199,7 +200,7 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 			}
 		}
 
-		// Do NOT click barcelonaCard itself (it may trigger navigation or re-render)
+		// O dată gasit cardul, se caută butoanele de adăugare în coș și favorite și se apasă pe ele
 		if (barcelonaCard) {
 			// Find the add-to-cart button inside the card
 			const buttons = await barcelonaCard.findElements(By.css("button"));
@@ -220,9 +221,9 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 			}
 		}
 
-		// Check if Barcelona is in cart
+		// Se verifică dacă puzzle-ul se afla în coșul de cumpărături
 		await driver.findElement(By.css('a[title="Coșul meu"]')).click();
-		// Wait for cart items to appear (li.flex.py-6)
+		// Se așteaptă ca produsul să apară în coș
 		await driver.wait(until.elementLocated(By.css("li.flex.py-6")), 10000);
 		const cartItems = await driver.findElements(By.css("li.flex.py-6"));
 
@@ -236,7 +237,8 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 		}
 		console.log("Barcelona in cart:", foundInCart);
 
-		// Click on "Sterge" button for Barcelona item in cart
+		// Se apasă pe butonul "Sterge" pentru produsul Barcelona din coș
+		// Dacă Barcelona este găsit în coș, se caută butonul "Șterge" și se apasă
 		if (foundInCart) {
 			for (const item of cartItems) {
 				const text = await item.getText();
@@ -248,7 +250,7 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 					break;
 				}
 			}
-			// Wait for cart to update
+			// Se așteaptă actualizarea coșului și se verifică dacă este gol
 			await driver.sleep(1000);
 			const updatedCartItems = await driver.findElements(
 				By.css("li.flex.py-6")
@@ -256,9 +258,9 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 			console.log("Cart empty after Sterge:", updatedCartItems.length === 0);
 		}
 
-		// Check if Barcelona is in favorites
+		// Se verifică dacă puzzle-ul a fost adăugat la favorite
 		await driver.findElement(By.css('a[title="Favorite"]')).click();
-		// Wait for cart items to appear (li.flex.py-6)
+		// Se așteaptă ca produsul să apară în favorite
 		await driver.wait(until.elementLocated(By.css("li.flex.py-6")), 10000);
 		const favoritesItems = await driver.findElements(By.css("li.flex.py-6"));
 
@@ -272,7 +274,8 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 		}
 		console.log("Barcelona in favorites:", foundInFavorites);
 
-		// Click on "Sterge" button for Barcelona item in favorites
+		// Se apasă pe butonul "Sterge" pentru produsul Barcelona din favorite
+		// Dacă Barcelona este găsit în favorite, se caută butonul "Șterge" și se apasă
 		if (foundInFavorites) {
 			for (const item of favoritesItems) {
 				const text = await item.getText();
@@ -284,7 +287,7 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 					break;
 				}
 			}
-			// Wait for favorites to update
+			// Se așteaptă actualizarea paginii de favorite si se verifică dacă este goală
 			await driver.sleep(1000);
 			const updatedFavoritesItems = await driver.findElements(
 				By.css("li.flex.py-6")
@@ -295,7 +298,7 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 			);
 		}
 
-		// AI search
+		// Se teastează asistentul AI. Se introduce o întreabare și se așteaptă răspunsul. Se verifică dacă răspunsul este dat într-un timp limitat
 		await driver
 			.findElement(By.css('button[aria-label="Deschide chat AI"]'))
 			.click();
@@ -313,7 +316,6 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 		await driver
 			.findElement(By.xpath("//button[contains(text(),'Întreabă')]"))
 			.click();
-		// Wait until at least one response element has non-empty text
 		await driver.wait(async () => {
 			const aiResponseDivs = await driver.findElements(
 				By.css(".border.rounded.bg-gray-50")
@@ -321,7 +323,6 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 			for (const div of aiResponseDivs) {
 				const text = await div.getText();
 				if (text && text.trim().length > 0 && !text.includes("AI scrie...")) {
-					// Wait 30 seconds before printing and returning the message
 					await new Promise((resolve) => setTimeout(resolve, 30000));
 					return true;
 				}
@@ -329,7 +330,7 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 			return false;
 		}, 300000);
 
-		// After waiting for AI response
+		// Se așteaptă după răspuns
 		const aiResponseDivs = await driver.findElements(
 			By.css(".border.rounded.bg-gray-50")
 		);
@@ -340,7 +341,7 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 			}
 		}
 
-		// Logout session: ensure protected route is not accessible
+		// Se testează sesiunea de Log out. Se verifică faptul că ruta privată nu este accesibilă
 		await driver.findElement(By.css('button[title="Profilul meu"]')).click();
 		await driver.wait(
 			until.elementLocated(By.xpath("//button[contains(text(),'Log out')]")),
@@ -355,21 +356,20 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 		);
 		console.log("Logout session test:", !!loginPrompt2);
 
-		// Error handling: simulate backend error (requires backend manipulation or mock)
-		// For demonstration, try to access a non-existent route
+		// Se accesează o rută care nu există, pentru a verifica gestionarea erorilor
 		await driver.get("http://localhost:5173/nonexistent");
 		await driver.wait(
 			until.elementLocated(By.xpath("//*[contains(text(),'404')]")),
 			2000
 		);
 
-		// Performance: measure page load time
+		// Se verifică performanța, prin măsurarea timpului de încărcare a paginii
 		let start = Date.now();
 		await driver.get("http://localhost:5173");
 		let end = Date.now();
 		console.log("Homepage load time:", end - start, "ms");
 
-		// Form validation (invalid login)
+		// Se verifică validarea formularului de autentificare, folosind un email invalid și o parolă goală
 		await driver.findElement(By.css('a[title="Autentificare"]')).click();
 		await driver.findElement(By.name("email")).clear();
 		await driver.findElement(By.name("email")).sendKeys("invalid");
@@ -396,7 +396,7 @@ const { Builder, By, Key, until } = require("selenium-webdriver");
 		}
 		console.log("Email validation message:", message);
 
-		// Mobile/responsive: resize window
+		// Se redimensionează fereastra pentru a simula un dispozitiv mobil și se apasă pe linkul "Acasă"
 		await driver.manage().window().setRect({ width: 375, height: 667 });
 		await driver.findElement(By.css('a[title="Acasă"]')).click();
 
